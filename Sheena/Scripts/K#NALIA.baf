@@ -1,0 +1,25 @@
+IF
+  Delay(10)
+  AreaCheck("AR1202")
+  InParty(Myself)
+  InParty("K#Sheena")
+  Global("SheenaTalkNalia","GLOBAL",0)
+THEN
+  RESPONSE #100
+    Wait(5)
+    SetGlobal("SheenatalkNalia","GLOBAL",1)
+    Interact("K#Sheena")
+END
+
+IF
+  Delay(30)
+  !AreaCheck("AR1202")
+  InParty(Myself)
+  InParty("K#Sheena")
+  Global("SheenaTalkNalia","GLOBAL",0)
+THEN
+  RESPONSE #100
+    Wait(5)
+    SetGlobal("SheenatalkNalia","GLOBAL",1)
+    Interact("K#Sheena")
+END

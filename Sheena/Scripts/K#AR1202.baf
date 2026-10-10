@@ -1,0 +1,9 @@
+IF
+  Global("KH#SheenaExists","GLOBAL",0)
+THEN
+  RESPONSE #100
+    SetGlobal("KH#SheenaExists","GLOBAL",1)
+    CreateCreature("K#Sheena",[2273.524],3) //firkraag lair
+   //CreateCreature("K#Sheena",[1765.2750],3)//Test is slum area
+END
+

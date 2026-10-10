@@ -1,0 +1,24 @@
+IF
+  True()
+  Global("K#Move","GLOBAL",0)
+THEN
+  RESPONSE #100
+    SetGlobal("K#Move","GLOBAL",1)
+    CutSceneId(Player1)
+    StorePartyLocations()
+    SmallWait(7)
+    ActionOverride(Player1,LeaveAreaLUA("k#1203","",[1200.1150],0))
+    ActionOverride(Player2,LeaveAreaLUA("k#1203","",[1200.1150],0))
+    ActionOverride(Player3,LeaveAreaLUA("k#1203","",[1200.1150],0))
+    ActionOverride(Player4,LeaveAreaLUA("k#1203","",[1200.1150],0))
+    ActionOverride(Player5,LeaveAreaLUA("k#1203","",[1200.1150],0))
+    ActionOverride(Player6,LeaveAreaLUA("k#1203","",[1200.1150],0))
+    LeaveAreaLUAPanic("k#1203","",[1200.1150],0)
+    LeaveAreaLUA("k#1203","",[1200.1150],0)
+    MultiPlayerSync()
+    MoveViewPoint([1380.1450],INSTANT)
+    Wait(1)
+    StartCutSceneMode()
+    StartCutScene("SHEMOV1a")
+END
+

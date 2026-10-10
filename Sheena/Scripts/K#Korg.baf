@@ -1,0 +1,49 @@
+//Extend Korgan top
+//Korgan - Underdark
+
+IF
+  InParty("K#Sheena")
+  !Dead("K#Sheena")
+  See("K#Sheena")
+  CombatCounter(0)
+  AreaCheck("AR2100")
+  Global("SheenRHD","GLOBAL",1)
+  Global("SheenaTalkKorgan1","GLOBAL",0)
+THEN
+ RESPONSE #100
+  SetGlobal("SheenaTalkKorgan1","GLOBAL",1)
+  RealSetGlobalTimer("SheenaTalkKorganTimer","GLOBAL",600)//10 minutes
+END
+
+
+IF
+  RealGlobalTimerExpired("SheenaTalkKorganTimer","GLOBAL")
+  InParty("K#Sheena")
+  !Dead("K#Sheena")
+  See("K#Sheena")
+  CombatCounter(0)
+  AreaCheck("AR2100")
+  Global("SheenRHD","GLOBAL",1)
+  Global("SheenaTalkKorgan","GLOBAL",0)
+THEN
+ RESPONSE #100
+  PlaySong(0)
+  SetGlobal("SheenaTalkKorgan","GLOBAL",1)
+  RealSetGlobalTimer("SheenaTalkKorganTimer","GLOBAL",600)//10 minutes
+  Interact("K#Sheena")
+END
+
+IF
+  RealGlobalTimerExpired("SheenaTalkKorganTimer","GLOBAL")
+  InParty(Myself)
+  See("K#Sheena")
+  !Dead("K#Sheena")
+  AreaCheck("AR2100")
+  CombatCounter(0)
+  Global("SheenRHD","GLOBAL",1)
+  Global("SheenaTalkKorgan","GLOBAL",3)
+THEN
+ RESPONSE #100
+  SetGlobal("SheenaTalkKorgan","GLOBAL",4)
+  Interact("K#Sheena")
+END

@@ -1,0 +1,22 @@
+//////////////////////////////////////////////////////////////////////////////
+//				SHEENAD SCRIPT VERSION 1.4
+//CONTROLS LOVE TALK 10 IN A FOREST AREA
+//////////////////////////////////////////////////////////////////////////////
+
+IF
+  !Dead("K#Sheena")
+  !Global("SheenaRomanceActive","GLOBAL",0)
+  !Global("SheenaRomanceActive","GLOBAL",3)
+  Global("SheenaMatch","GLOBAL",1)
+  Global("SheenaMakeRain","LOCALS",2)
+  AreaType(FOREST)
+  AreaType(OUTDOOR)
+  See(Player1)
+  CombatCounter(0)
+  Global("SheenaLovetalk","LOCALS",9)
+THEN
+  RESPONSE #100
+    IncrementGlobal("SheenaLoveTalk","LOCALS",1)
+    Interact(Player1)
+END
+

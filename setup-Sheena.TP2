@@ -1,0 +1,270 @@
+BACKUP ~Sheena\backup~
+AUTHOR ~edvin@seznam.cz~
+
+VERSION ~v2.6~
+
+AUTO_TRA ~Sheena/%s~
+
+//For those without TOB
+ALWAYS
+  ACTION_IF (GAME_IS ~eet~) BEGIN
+    OUTER_SET bg2_chapter = 12
+  END ELSE BEGIN
+    OUTER_SET bg2_chapter = 0
+  END
+  OUTER_FOR (i=1; i<=10; i=i+1) BEGIN
+    OUTER_SET bg2_chapter = bg2_chapter + 1
+    OUTER_SPRINT name_source ~bg2_chapter_%i%~
+    OUTER_SET EVAL ~%name_source%~ = bg2_chapter
+  END
+
+  ACTION_IF (NOT ENGINE_IS ~bgee bg2ee iwdee~) BEGIN
+    ACTION_IF NOT FILE_EXISTS ~Data/25Dialog.bif~ THEN BEGIN
+      COPY ~Sheena/ids~ ~override~
+    END
+  END
+
+END
+///////////////////////////////////////////////////////////////
+
+LANGUAGE ~English~ 
+	 ~English~
+         ~Sheena/English/setup.tra~
+
+LANGUAGE ~Francais (Traduction Stargazer & Red Knight)~
+         ~French~
+ 	 ~Sheena/French/setup.tra~
+
+LANGUAGE ~Castellano-Spanish (Traducido por Roendal y Lyra para RPG-Bardo.com)~ 
+	 ~Spanish~
+         ~Sheena/Spanish/setup.tra~
+
+LANGUAGE ~Cestina (Prelozil Edvin)~
+         ~Czech~
+         ~Sheena/Czech/setup.tra~
+
+///////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////
+//R.H.D NPC
+///////////////////////////////////////////////////////////////
+BEGIN @0
+
+AT_INTERACTIVE_EXIT ~Setup-SheenaAudioInstall.bat~
+
+//AT_INTERACTIVE_EXIT ~Setup-SheenaTisunpack.bat~
+
+AT_INTERACTIVE_EXIT ~VIEW Sheena/readme_Sheena.txt~
+
+//Copy detectable spells to the override
+//REMOVED - ORIGINALLY PART OF THE QUEST
+//COPY ~Sheena\IDS~ ~Override~
+//COPY ~Sheena\detectablespells\build1.2.3\Spl~ ~Override~
+//Append and copy the action.IDS entry
+
+ACTION_IF (NOT ENGINE_IS ~bgee bg2ee iwdee~) BEGIN
+  ACTION_IF NOT FILE_EXISTS ~override\Action.ids~ THEN BEGIN
+    COPY ~Sheena\IDS\ACTION.IDS~ ~override\ACTION.IDS~
+  END
+  ACTION_IF NOT FILE_EXISTS ~override/trigger.ids~ THEN BEGIN 
+    COPY ~Sheena/ids/trigger.ids~ ~override/trigger.ids~
+  END
+  ACTION_IF NOT FILE_EXISTS ~override/spell.ids~ THEN BEGIN 
+    COPY ~Sheena/ids/spell.ids~ ~override/spell.ids~
+  END
+END
+
+APPEND ~Action.ids~
+~147 RemoveSpellRES(S:RES*,O:Target)~
+UNLESS ~147 RemoveSpellRES(S:RES*,O:Target)~
+APPEND ~Trigger.ids~
+~0x4031 HaveSpellRES(S:RES*)~
+UNLESS ~0x4031 HaveSpellRES(S:RES*)~
+
+
+//Portraits
+COPY ~Sheena\Portraits\SheenaS.bmp~ ~Override\SheenaS.bmp~
+COPY ~Sheena\Portraits\Sheena1S.bmp~ ~Override\Sheena1S.bmp~
+COPY ~Sheena\Portraits\SheenaM.bmp~ ~Override\SheenaM.bmp~
+COPY ~Sheena\Portraits\Sheena1M.bmp~ ~Override\Sheena1M.bmp~
+COPY ~Sheena\Portraits\SheenaL.bmp~ ~Override\SheenaM.bmp~
+COPY ~Sheena\Portraits\Sheena1L.bmp~ ~Override\Sheena1M.bmp~
+
+//Sheena 
+COPY ~Sheena\Creatures\K#Sheena.cre~ ~override\K#Sheena.cre~
+  SAY NAME1 @1
+  SAY NAME2 @1
+  SAY BIO @2
+
+COPY ~Sheena\Spell\K#PolyS.spl~ ~override\K#PolyS.spl~
+SAY NAME1 @3
+SAY NAME2 @3
+COPY ~Sheena\Spell\K#PolyB.spl~ ~override\K#PolyB.spl~
+SAY NAME1 @4
+SAY NAME2 @4
+COPY ~Sheena\Spell\K#ANIM.bam~ ~override\K#ANIM.bam~
+COPY ~Sheena\Spell\K#REDDRA.spl~ ~override\K#REDDRA.spl~
+SAY NAME1 @5
+SAY NAME2 @5
+
+//THESE SPELLS ENABLE OR DISABLE THE INNATE ABILITY BUTTON
+COPY ~Sheena\Spell\K#ENABLE.spl~ ~override\K#ENABLE.spl~
+COPY ~Sheena\Spell\K#DSABLE.spl~ ~override\K#DSABLE.spl~
+COPY ~Sheena\Spell\K#PolyS1.spl~ ~override\K#PolyS1.spl~
+//SPELL FOR THE RITUAL IN THE DRAGON ROMANCE
+COPY ~Sheena\Spell\K#PCCON.spl~ ~override\K#PCCON.spl~
+COPY ~Sheena\Spell\K#SHECON.spl~ ~override\K#SHECON.spl~
+COPY ~Sheena\Spell\K#KILLS.spl~ ~override\K#KILLS.spl~
+
+//Animation files
+ACTION_IF (NOT GAME_IS ~eet~) BEGIN
+  //MBAS animation crashes
+  COPY ~Sheena\Bam\mdh2a1.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2a1e.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2a2.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2a2e.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2a4.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2a4e.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2ca.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2cae.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2de.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2dee.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2gh.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2ghe.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2gu.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2gue.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2sc.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2sce.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2sd.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2sde.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2sl.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2sle.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2sp.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2spe.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2tw.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2twe.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2wk.BAM~ ~override~
+  COPY ~Sheena\Bam\mdh2wke.BAM~ ~override~
+END
+
+// Copy Jason's Mute song 0
+ACTION_IF NOT FILE_EXISTS ~Music\PGBlank.mus~ THEN BEGIN
+COPY_EXISTING ~songlist.2da~ ~override~
+REPLACE_TEXTUALLY
+~0       No_music        ****~
+~0       MUSBLANK         MUSBLANK.MUS~
+COPY ~Sheena/Musblank/Musblank.mus~ ~music/Musblank.mus~
+END
+
+//Item
+COPY ~Sheena\items\K#SheSwd.itm~ ~override\K#SheSwd.itm~
+SAY NAME1 @6
+SAY NAME2 @6
+SAY DESC @7
+
+COPY ~Sheena\items\SHEARM.BAM~ ~override\SHEARM.BAM~
+COPY ~Sheena\items\Shearm.itm~ ~override\Shearm.ITM~
+SAY NAME1 @8
+SAY NAME2 @8
+SAY DESC @9
+
+COPY_EXISTING ~K#Sheena.cre~ ~override~
+  ADD_CRE_ITEM ~Shearm~ #1 #0 #0 ~IDENTIFIED~ ~ARMOR~ EQUIP
+
+//Originally for the sake of not wearing armor but obsolete now
+//COPY ~Sheena\items\K#Armor.itm~ ~override\K#Armor.itm~
+
+COPY_EXISTING ~FIRKRA02.CRE~ ~override~
+ADD_CRE_ITEM ~KEY09~ #0 #0 #0 ~IDENTIFIED~ ~INV~
+
+//Compile her dialogs
+COMPILE EVALUATE_BUFFER ~Sheena\Dialogues\K#SheenJ.d~
+USING ~Sheena/English/Sheena.tra~
+  	~Sheena/%s/Sheena.tra~
+
+COMPILE EVALUATE_BUFFER ~Sheena\Dialogues\K#SheenP.d~
+USING ~Sheena/English/Sheena.tra~
+  	~Sheena/%s/Sheena.tra~
+
+COMPILE EVALUATE_BUFFER ~Sheena\Dialogues\K#Sheen.d~
+USING ~Sheena/English/Sheena.tra~
+  	~Sheena/%s/Sheena.tra~
+
+COMPILE EVALUATE_BUFFER ~Sheena\Dialogues\K#BSheen.d~
+USING ~Sheena/English/Sheena.tra~
+  	~Sheena/%s/Sheena.tra~
+
+
+//       ~Sheena\Dialogs\K#FLIRTS.d~//Now part of the J file
+//Compile her script
+COMPILE EVALUATE_BUFFER ~Sheena\Scripts\K#Sheena.baf~ 
+COMPILE EVALUATE_BUFFER ~Sheena\Scripts\SheenaD.baf~ //Hopefully will trigger the LT 10
+COMPILE EVALUATE_BUFFER ~Sheena\Scripts\K#RITUAL.baf~ //ROMANCE RITUAL CUTSCENE
+
+//Dialogue with Udsilver happens before full dialogs with the main character
+EXTEND_TOP ~INITRG25.bcs~ ~Sheena\scripts\AdlonTop.baf~ 
+EXTEND_TOP ~NALIA.bcs~ ~Sheena\scripts\k#NALIA.baf~ //Banter
+EXTEND_TOP ~MAZZY.bcs~ ~Sheena\scripts\k#mazz.baf~ //Banter
+EXTEND_TOP ~KORGAN.bcs~ ~Sheena\scripts\K#Korg.baf~ //Banter
+EXTEND_TOP ~ANOMEN.bcs~ ~Sheena\scripts\K#ANOMEN.baf~ //Banter
+
+
+ACTION_IF NOT FILE_EXISTS ~override\AR1202.bcs~ THEN BEGIN
+  EXTEND_BOTTOM ~AR1202.bcs~ ~Sheena\Scripts\K#AR1202.baf~
+END ELSE BEGIN
+  ACTION_IF NOT FILE_CONTAINS ~override\AR1202.bcs~ ~Sheena~ THEN BEGIN
+    EXTEND_BOTTOM ~AR1202.bcs~ ~Sheena\Scripts\K#AR1202.baf~
+END
+END
+
+//OPENING CUTSCENE BETWEEN SHEENA AND FIRKRAAG
+COPY ~Sheena\CutScene\K#FIRKRA.cre~ ~override\K#FIRKRA.cre~
+COPY ~Sheena\CutScene\K#FIRMAG.cre~ ~override\K#FIRMAG.cre~
+COPY ~Sheena\CutScene\K#ORC.cre~ ~override\K#ORC.cre~
+COPY ~Sheena\CutScene\K#CUTSHE.cre~ ~override\K#CUTSHE.cre~
+COPY ~Sheena\CutScene\K#1203.are~ ~override\K#1203.are~
+COPY ~Sheena\Spell\K#POLYD.spl~ ~override\K#POLYD.spl~
+EXTEND_TOP ~AR1202.bcs~ ~Sheena\Cutscene\K#1202.baf~
+
+//COMPILE EVALUATE_BUFFER ~Sheena\CutScene\SHEMOV1a.baf~
+COMPILE EVALUATE_BUFFER ~Sheena\Cutscene\SHEMOV1b.baf~ 
+COMPILE EVALUATE_BUFFER ~Sheena\Cutscene\K#1203.baf~ 
+USING ~Sheena/English/Sheena.tra~
+  	~Sheena/%s/Sheena.tra~
+
+COMPILE EVALUATE_BUFFER ~Sheena/Scripts/K#SheFix.baf~ 
+USING ~Sheena/English/Sheena.tra~
+  	~Sheena/%s/Sheena.tra~
+
+//Dialogs
+APPEND ~pdialog.2da~
+~K#SHEENA        SHEENAP           SHEENAJ          SHEENAD~
+UNLESS ~K#Sheena~
+UNLESS ~25POST~
+
+APPEND ~pdialog.2da~
+~K#SHEENA        SHEENAP           SHEENAJ          SHEENAD         SHEENA25P               SHEENA25J                SHEENA25D                   SHEENA25~
+UNLESS ~K#Sheena~
+IF ~25POST~
+
+APPEND ~interdia.2da~
+  ~K#Sheena      BSHEENA       BSHEENA25~
+UNLESS ~K#Sheena~
+
+ACTION_IF GAME_IS ~eet~ BEGIN
+  INCLUDE ~EET/other/EET_functions.tph~
+  LAF ~EET_NPC_TRANSITION~
+    INT_VAR
+      type = 2
+    STR_VAR
+      dv = "K#SHEENA"
+      override_SoA = "K#SHEENA"
+      override_ToB = "K#SHEENA"
+      dialog_ToB = "SHEENAP"
+      traFile = EVAL "Sheena/%LANGUAGE%/Sheena.tra"
+      string = "@9000" //Bring me Sheena, the half-dragon fighter/wizard.
+      stringPosDV = "Skie"
+  END
+END ELSE BEGIN
+  //COMPILE ~Sheena/Dialogues/FATESP.d~ USING ~Sheena/%LANGUAGE%/Sheena.tra~
+END

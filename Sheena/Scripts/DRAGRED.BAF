@@ -1,0 +1,179 @@
+IF
+  See(NearestEnemyOf(Myself))
+  Global("RemoveMagic","LOCALS",0)
+THEN
+  RESPONSE #100
+    ChangeClass(Myself,MAGE)
+    ReallyForceSpell(Myself,DRAGON_STONE_SKIN)
+    ReallyForceSpell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
+    SetGlobal("StoneSkin","LOCALS",1)
+    SetGlobal("RemoveMagic","LOCALS",1)
+END
+
+IF
+  !Detect([PC])
+  HPLT(Myself,90)
+  CombatCounter(0)
+THEN
+  RESPONSE #100
+    SetGlobal("RemoveMagic","LOCALS",0)
+    SetGlobal("WingBuffet","LOCALS",0)
+    SetGlobal("Haste","LOCALS",0)
+    SetGlobal("DRAGONFEAR","LOCALS",0)
+    ReallyForceSpell(Myself,CLERIC_HEAL)
+END
+
+IF
+  See(NearestEnemyOf(Myself))
+  Global("DRAGONFEAR","LOCALS",0)
+THEN
+  RESPONSE #100
+    ReallyForceSpell(NearestEnemyOf(Myself),DRAGON_FEAR)
+    ReallyForceSpell(NearestEnemyOf(Myself),DRAGON_LOWER_FIRE)
+    SetGlobal("DRAGONFEAR","LOCALS",1)
+    SetGlobalTimer("REDDRAGONBREATH","GLOBAL",1)
+    ReallyForceSpell(LastSeenBy(Myself),DRAGON_WING_BUFFET)
+END
+
+IF
+  GlobalTimerExpired("REDDRAGONBREATH","GLOBAL")
+  See(NearestEnemyOf(Myself))
+  Range(LastSeenBy(Myself),11)
+  Global("WingBuffet","LOCALS",0)
+THEN
+  RESPONSE #100
+    ReallyForceSpell(LastSeenBy(Myself),DRAGON_WING_BUFFET)
+    Wait(1)
+    SetGlobal("WingBuffet","LOCALS",1)
+  RESPONSE #60
+    Continue()
+END
+
+IF
+  See(NearestEnemyOf(Myself))
+  !Range(LastSeenBy(Myself),10)
+  GlobalTimerExpired("REDDRAGONBREATH","GLOBAL")
+THEN
+  RESPONSE #100
+    SetGlobal("WingBuffet","LOCALS",0)
+    ReallyForceSpell(LastSeenBy(Myself),RED_DRAGON_BREATH)
+    ReallyForceSpell(LastSeenBy(Myself),RED_DRAGON_HIT)
+    SetGlobalTimer("REDDRAGONBREATH","GLOBAL",18)
+END
+
+IF
+  Global("WingBuffet","LOCALS",1)
+  See(NearestEnemyOf(Myself))
+  Range(LastSeenBy(Myself),11)
+THEN
+  RESPONSE #100
+    SetGlobal("WingBuffet","LOCALS",0)
+    SetGlobalTimer("REDDRAGONBREATH","GLOBAL",18)
+END
+
+IF
+  See(NearestEnemyOf(Myself))
+  Global("Offense1","LOCALS",0)
+THEN
+  RESPONSE #100
+    ChangeClass(Myself,MAGE)
+    ReallyForceSpell(LastSeenBy(Myself),WIZARD_GREATER_MALISON)
+    SetGlobal("Offense1","LOCALS",1)
+END
+
+IF
+  See(NearestEnemyOf(Myself))
+  Global("Haste","LOCALS",0)
+THEN
+  RESPONSE #100
+    ChangeClass(Myself,MAGE)
+    ReallyForceSpell(Myself,WIZARD_HASTE)
+    SetGlobal("Haste","LOCALS",1)
+END
+
+IF
+  See(NearestEnemyOf(Myself))
+  Global("HoldPerson","LOCALS",0)
+THEN
+  RESPONSE #100
+    ReallyForceSpell(LastSeenBy(Myself),CLERIC_HOLD_PERSON)
+    SetGlobal("HoldPerson","LOCALS",1)
+END
+
+IF
+  Global("Silence","LOCALS",0)
+  OR(2)
+    See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+    See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+THEN
+  RESPONSE #100
+    ReallyForceSpell(LastSeenBy(Myself),DRAGON_SILENCE)
+    SetGlobal("Silence","LOCALS",1)
+    AttackOneRound(LastSeenBy(Myself))
+    AttackOneRound(LastSeenBy(Myself))
+END
+
+IF
+  See(NearestEnemyOf(Myself))
+  Delay(6)
+  GlobalLT("CharmPerson","LOCALS",3)
+THEN
+  RESPONSE #100
+    ChangeClass(Myself,MAGE)
+    ReallyForceSpell(NearestEnemyOf(Myself),WIZARD_CHARM_PERSON)
+    IncrementGlobal("CharmPerson","LOCALS",1)
+END
+/////////////////////////////////////////////////////////////////////
+// How To Provoke A Dragon
+// Doing these things will make Firkraag angry. 
+/////////////////////////////////////////////////////////////////////
+IF
+ Allegiance(Myself,NEUTRAL)
+ OR(5)
+   AttackedBy([ANYTHING],DEFAULT)
+   SpellCast([GOODCUTOFF],0)		// triggers on any spell
+   SpellCastPriest([GOODCUTOFF],0)	// triggers on any spell
+   SpellCastInnate([GOODCUTOFF],0)	// triggers on any ability
+   Detect([GOODCUTOFF.0.0.0.0.SUMMONED])
+THEN
+ RESPONSE #100
+  DisplayString(Myself,21726)	// "Are you trying to threaten me?"
+  DisplayString(Myself,60511)	// "Time to perish, manling!"
+  Enemy()
+END
+
+
+/////////////////////////////////////////////////////////////////////
+// Initialize our Juggernaut
+/////////////////////////////////////////////////////////////////////
+IF
+ Global("FirkraagInit","LOCALS",0)
+THEN
+ RESPONSE #100
+  ForceSpell(Myself,DRAGON_STONE_SKIN)
+  SetGlobalTimer("FirkraagStone","GLOBAL",600) // can recast
+  SetGlobalTimer("REDDRAGONBREATH","GLOBAL",18)
+  SetGlobalTimer("Cast","LOCALS",6)
+  EquipMostDamagingMelee() // use those claws!
+  SetGlobal("FirkraagInit","LOCALS",1)
+END
+
+/////////////////////////////////////////////////////////////////////
+// Warn the PC not to try any tricks.
+// Then start a random walk. We cannot actually detect SpellCast()
+// on the other side of the cavern (why not?) ... but if we randomly
+// walk around there's no good place for the party to sit around 
+// buffing. A prescient party could buffy at the top of the stairs
+// the first time they come in, however. :-)
+/////////////////////////////////////////////////////////////////////
+IF
+ NumberOfTimesTalkedTo(1)
+ Global("FirkraagWarn","LOCALS",0)
+THEN
+ RESPONSE #100
+  DisplayString(Myself,4369)	// "don't try anything stupid"
+  SetGlobal("FirkraagWarn","LOCALS",1)
+  RandomWalkContinuous()	// Why make it easy for them? 
+END
+
+

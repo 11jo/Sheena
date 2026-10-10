@@ -1,0 +1,11 @@
+IF
+  AreaCheck("AR2102")
+  Global("UDSTalkSheena","GLOBAL",0)
+  See("K#Sheena")
+  Allegiance(Myself,NEUTRAL)
+THEN
+  RESPONSE #100
+    SetGlobal("UDSTalkSheena","GLOBAL",1)
+    StartDialogNoSet("K#Sheena")
+END
+

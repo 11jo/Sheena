@@ -1,0 +1,6 @@
+IF
+  Global("K#xplor1e","GLOBAL",0)
+THEN
+  RESPONSE #100
+    SetGlobal("K#xplor1e","GLOBAL",1)  
+END

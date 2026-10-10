@@ -1,0 +1,15 @@
+//Anomen before knighthood
+IF
+  InParty("K#Sheena")
+  !Dead("K#Sheena")
+  AreaCheck("AR0900")
+  CombatCounter(0)
+  Global("AnomenIsKnight","GLOBAL",0)//NOT KNIGHT
+  Global("AnomenTalkSheena","GLOBAL",0)
+THEN
+ RESPONSE #100
+  PlaySong(0)
+  SetGlobal("AnomenTalkSheena","GLOBAL",1)
+  Interact("K#Sheena")
+END
+

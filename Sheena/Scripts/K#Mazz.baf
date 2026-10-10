@@ -1,0 +1,24 @@
+//Extend Mazzy top
+IF
+  InParty(Myself)
+  See("K#Sheena")
+  Global("SheenaTalkMazzy1","GLOBAL",0)
+THEN
+ RESPONSE #100
+  SetGlobal("SheenaTalkMazzy1","GLOBAL",1)
+  RealSetGlobalTimer("SheenaTalkMazzyTimer","GLOBAL",3600)//1 HOUR
+END
+
+IF
+  RealGlobalTimerExpired("SheenaTalkMazzyTimer","GLOBAL")
+  InParty(Myself)
+  See("K#Sheena")
+  !Dead("K#Sheena")
+  CombatCounter(0)
+  Global("SheenaTalkMazzy","GLOBAL",0)
+THEN
+ RESPONSE #100
+  SetGlobal("SheenaTalkMazzy","GLOBAL",1)
+  RealSetGlobalTimer("SheenaTalkMazzyTimer","GLOBAL",3600)//1 HOUR
+  ActionOverride(Myself,Interact("K#Sheena"))
+END
