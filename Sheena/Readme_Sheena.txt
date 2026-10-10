@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------------------
-Sheena, A Half Dragon Tale - version 2.5
+Sheena, A Half Dragon Tale - version 2.6
 
 Author: Edvin - edvin@seznam.cz
 Forum: https://forums.beamdog.com/discussion/comment/800949#Comment_800949

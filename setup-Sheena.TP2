@@ -3,8 +3,6 @@ AUTHOR ~edvin@seznam.cz~
 
 VERSION ~v2.6~
 
-AUTO_TRA ~Sheena/%s~
-
 //For those without TOB
 ALWAYS
   ACTION_IF (GAME_IS ~eet~) BEGIN
@@ -24,24 +22,37 @@ ALWAYS
     END
   END
 
+ ACTION_DEFINE_ARRAY tra_reload BEGIN Setup END
+ LAF HANDLE_CHARSETS
+ INT_VAR
+ infer_charset = 1
+ STR_VAR
+ tra_path = EVAL ~%MOD_FOLDER%/tra~
+ reload_array = tra_reload
 END
-///////////////////////////////////////////////////////////////
+END
+
+ AUTO_TRA ~Sheena/tra/%s~
 
 LANGUAGE ~English~ 
 	 ~English~
-         ~Sheena/English/setup.tra~
+         ~Sheena/Translations/English/setup.tra~
 
 LANGUAGE ~Francais (Traduction Stargazer & Red Knight)~
          ~French~
- 	 ~Sheena/French/setup.tra~
+ 	 ~Sheena/tra/French/setup.tra~
 
 LANGUAGE ~Castellano-Spanish (Traducido por Roendal y Lyra para RPG-Bardo.com)~ 
 	 ~Spanish~
-         ~Sheena/Spanish/setup.tra~
+         ~Sheena/tra/Spanish/setup.tra~
 
 LANGUAGE ~Cestina (Prelozil Edvin)~
          ~Czech~
-         ~Sheena/Czech/setup.tra~
+         ~Sheena/tra/Czech/setup.tra~
+		 
+LANGUAGE ~Russian (ART BERSERKER & Aerie TEAM)~
+         ~Russian~
+         ~Sheena/tra/Russian/SETUP.tra~		 
 
 ///////////////////////////////////////////////////////////////
 
@@ -74,12 +85,10 @@ ACTION_IF (NOT ENGINE_IS ~bgee bg2ee iwdee~) BEGIN
   END
 END
 
-APPEND ~Action.ids~
-~147 RemoveSpellRES(S:RES*,O:Target)~
-UNLESS ~147 RemoveSpellRES(S:RES*,O:Target)~
-APPEND ~Trigger.ids~
-~0x4031 HaveSpellRES(S:RES*)~
-UNLESS ~0x4031 HaveSpellRES(S:RES*)~
+APPEND ~ACTION.IDS~ ~147 RemoveSpellRES(S:RES*)~
+	UNLESS ~147 RemoveSpellRES(S:RES\*)~
+APPEND ~Trigger.ids~ ~0x4031 HaveSpellRES(S:Spell*)~
+	UNLESS ~0x4031 HaveSpellRESS:Spell\*)~
 
 
 //Portraits
@@ -179,20 +188,20 @@ ADD_CRE_ITEM ~KEY09~ #0 #0 #0 ~IDENTIFIED~ ~INV~
 
 //Compile her dialogs
 COMPILE EVALUATE_BUFFER ~Sheena\Dialogues\K#SheenJ.d~
-USING ~Sheena/English/Sheena.tra~
-  	~Sheena/%s/Sheena.tra~
+USING ~Sheena/tra/English/Sheena.tra~
+  	~Sheena/tra/%s/Sheena.tra~
 
 COMPILE EVALUATE_BUFFER ~Sheena\Dialogues\K#SheenP.d~
-USING ~Sheena/English/Sheena.tra~
-  	~Sheena/%s/Sheena.tra~
+USING ~Sheena/tra/English/Sheena.tra~
+  	~Sheena/tra/%s/Sheena.tra~
 
 COMPILE EVALUATE_BUFFER ~Sheena\Dialogues\K#Sheen.d~
-USING ~Sheena/English/Sheena.tra~
-  	~Sheena/%s/Sheena.tra~
+USING ~Sheena/tra/English/Sheena.tra~
+  	~Sheena/tra/%s/Sheena.tra~
 
 COMPILE EVALUATE_BUFFER ~Sheena\Dialogues\K#BSheen.d~
-USING ~Sheena/English/Sheena.tra~
-  	~Sheena/%s/Sheena.tra~
+USING ~Sheena/tra/English/Sheena.tra~
+  	~Sheena/tra/%s/Sheena.tra~
 
 
 //       ~Sheena\Dialogs\K#FLIRTS.d~//Now part of the J file
@@ -229,12 +238,12 @@ EXTEND_TOP ~AR1202.bcs~ ~Sheena\Cutscene\K#1202.baf~
 //COMPILE EVALUATE_BUFFER ~Sheena\CutScene\SHEMOV1a.baf~
 COMPILE EVALUATE_BUFFER ~Sheena\Cutscene\SHEMOV1b.baf~ 
 COMPILE EVALUATE_BUFFER ~Sheena\Cutscene\K#1203.baf~ 
-USING ~Sheena/English/Sheena.tra~
-  	~Sheena/%s/Sheena.tra~
+USING ~Sheena/tra/English/Sheena.tra~
+  	~Sheena/tra/%s/Sheena.tra~
 
 COMPILE EVALUATE_BUFFER ~Sheena/Scripts/K#SheFix.baf~ 
-USING ~Sheena/English/Sheena.tra~
-  	~Sheena/%s/Sheena.tra~
+USING ~Sheena/tra/English/Sheena.tra~
+  	~Sheena/tra/%s/Sheena.tra~
 
 //Dialogs
 APPEND ~pdialog.2da~
@@ -261,10 +270,10 @@ ACTION_IF GAME_IS ~eet~ BEGIN
       override_SoA = "K#SHEENA"
       override_ToB = "K#SHEENA"
       dialog_ToB = "SHEENAP"
-      traFile = EVAL "Sheena/%LANGUAGE%/Sheena.tra"
+      traFile = EVAL "Sheena/tra/%LANGUAGE%/Sheena.tra"
       string = "@9000" //Bring me Sheena, the half-dragon fighter/wizard.
       stringPosDV = "Skie"
   END
 END ELSE BEGIN
-  //COMPILE ~Sheena/Dialogues/FATESP.d~ USING ~Sheena/%LANGUAGE%/Sheena.tra~
+  //COMPILE ~Sheena/Dialogues/FATESP.d~ USING ~Sheena/tra/%LANGUAGE%/Sheena.tra~
 END

@@ -66,7 +66,7 @@ Global("K#Died","GLOBAL",1)
 THEN
 RESPONSE #100
 SetGlobal("K#Died","GLOBAL",0)
-ActionOverride("K#Sheena",ApplySpellRES("K#POLYB","K#Sheena"))
+ApplySpellRES("K#POLYB","K#Sheena")
 JoinParty()
 END
 
@@ -110,7 +110,7 @@ Global("FirstForm","LOCALS",0)
 THEN
 RESPONSE #100
 SetGlobal("FirstForm","LOCALS",1)
-ActionOverride(Myself,ApplySpellRES("K#POLYS",Myself))
+ApplySpellRES("K#POLYS",Myself)
 END
 
 IF 
@@ -128,7 +128,7 @@ THEN
 RESPONSE #100
 SetGlobal("KH#SheenaExists","GLOBAL",2)
 SetGlobal("FirstForm","LOCALS",2)
-ActionOverride(Myself,ApplySpellRES("K#POLYB",Myself))
+ApplySpellRES("K#POLYB",Myself)
 END
 
 //SHEENA POLYMORPH SCRIPT
@@ -145,9 +145,9 @@ IF
  AreaCheck("AR1204")
  THEN
  RESPONSE #100
- ActionOverride(Myself,ApplySpellRES("K#DSABLE",Myself))//Disable ability button
- ActionOverride(Myself,ApplySpellRES("K#POLYB", Myself))//Change into a human form
- ActionOverride(Myself,RemoveSpellRES("K#REDDRA",Myself))
+ApplySpellRES("K#DSABLE",Myself) //Disable ability button
+ApplySpellRES("K#POLYB", Myself) //Change into a human form
+RemoveSpellRES("K#REDDRA")
  END
 
 IF
@@ -156,7 +156,7 @@ IF
 THEN
 RESPONSE #100
  SetGlobal("SheenABI","GLOBAL",0)
- ActionOverride(Myself,RemoveSpellRES("K#REDDRA",Myself))
+ RemoveSpellRES("K#REDDRA")
 END
 
 //DISABLE POLYMORPH IF LOOK LIKE DROW - KEEP THE ILLUSION GOING
@@ -166,7 +166,7 @@ Global("SheenaLookLikeDrow","GLOBAL",0)
 THEN
 RESPONSE #100
 SetGlobal("SheenaLookLikeDrow","GLOBAL",1)
-ActionOverride(Myself,ApplySpellRES("K#DSABLE",Myself))//Disable ability button
+ApplySpellRES("K#DSABLE",Myself) //Disable ability button
 END
 
 //Remove spell ability: change into HD if I am an HD already
@@ -175,9 +175,9 @@ Global("SheenRHD","GLOBAL",1)//HD form
 PartyRested()
 THEN
 RESPONSE #100
-RemoveSpellRES("K#POLYS",Myself)
-RemoveSpellRES("K#POLYS",Myself)
-RemoveSpellRES("K#REDDRA",Myself)
+RemoveSpellRES("K#POLYS")
+RemoveSpellRES("K#POLYS")
+RemoveSpellRES("K#REDDRA")
 END
 
 //Arrival in Hell counts as rest
@@ -188,9 +188,9 @@ Global("k#HellBugFix","GLOBAL",0)
 THEN
 RESPONSE #100
 SetGlobal("k#HellBugFix","GLOBAL",1)
-RemoveSpellRES("K#POLYS",Myself)
-RemoveSpellRES("K#POLYS",Myself)
-RemoveSpellRES("K#REDDRA",Myself)
+RemoveSpellRES("K#POLYS")
+RemoveSpellRES("K#POLYS")
+RemoveSpellRES("K#REDDRA")
 END
 
 //Remove spell ability: change into human if I am a human already
@@ -199,9 +199,9 @@ Global("SheenRHD","GLOBAL",0)//Human form
 PartyRested()
 THEN
 RESPONSE #100
-RemoveSpellRES("K#POLYB",Myself)
-RemoveSpellRES("K#POLYB",Myself)
-RemoveSpellRES("K#REDDRA",Myself)
+RemoveSpellRES("K#POLYB")
+RemoveSpellRES("K#POLYB")
+RemoveSpellRES("K#REDDRA")
 END
 
 IF
@@ -211,9 +211,9 @@ Global("k#HellBugFix","GLOBAL",0)
 THEN
 RESPONSE #100
 SetGlobal("k#HellBugFix","GLOBAL",1)
-RemoveSpellRES("K#POLYB",Myself)
-RemoveSpellRES("K#POLYB",Myself)
-RemoveSpellRES("K#REDDRA",Myself)
+RemoveSpellRES("K#POLYB")
+RemoveSpellRES("K#POLYB")
+RemoveSpellRES("K#REDDRA")
 END
 
 
@@ -253,9 +253,9 @@ IF
  THEN
  RESPONSE #100
  Wait(2)
- ActionOverride(Myself,RemoveSpellRES("K#REDDRA",Myself))
- ActionOverride(Myself,ApplySpellRES("K#DSABLE",Myself))//Disable ability button
- ActionOverride(Myself,ApplySpellRES("K#POLYB", Myself))//Change into a human form
+RemoveSpellRES("K#REDDRA")
+ApplySpellRES("K#DSABLE",Myself) //Disable ability button
+ApplySpellRES("K#POLYB", Myself) //Change into a human form
  END
 
 
@@ -273,7 +273,7 @@ IF
  THEN
  RESPONSE #100
  //DISABLE INNATE ABBILITY BUTTON
- ActionOverride(Myself,ApplySpellRES("K#DSABLE",Myself))//Disable ability button
+ApplySpellRES("K#DSABLE",Myself) //Disable ability button
  END
 
 //IF OUTSIDE A CITY, ENABLE THE INNATE ABILITY BUTTON
@@ -289,8 +289,8 @@ IF
  THEN
  RESPONSE #100
  //ENABLE INNATE ABBILITY BUTTON
- ActionOverride(Myself,ApplySpellRES("K#ENABLE",Myself))//Enable ability button
- ActionOverride(Myself,RemoveSpellRES("K#REDDRA",Myself))//Remove the ability
+ApplySpellRES("K#ENABLE",Myself) //Enable ability button
+RemoveSpellRES("K#REDDRA") //Remove the ability
  END
 
 
@@ -305,7 +305,7 @@ IF
 THEN
  RESPONSE #100
  //ENABLE INNATE ABBILITY BUTTON
- ActionOverride(Myself,ApplySpellRES("K#ENABLE",Myself))//Enable ability button
+ApplySpellRES("K#ENABLE",Myself) //Enable ability button
 END
 
 //////////////////////////////////////////////////////
@@ -610,7 +610,7 @@ RealGlobalTimerExpired("SheTalkSlayer","LOCALS")
 Global("SlayerTalkReady","LOCALS",1)
 CombatCounter(0)
 InParty(Myself)
-!Dead("Myself")
+!Dead(Myself)
 THEN
 RESPONSE #100
 SetGlobal("SlayerTalkReady","LOCALS",2)

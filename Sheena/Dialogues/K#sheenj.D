@@ -5,7 +5,8 @@ BEGIN SHEENAJ
 
 //Umber Hulks, Trolls, Orcs, Orbs, Illithid, Yuan-ti, Vampire, Lich
 IF ~Global("K#SeeOrbs","GLOBAL",1)~ THEN BEGIN SheenaOrbs1
-SAY @8000 = @8001
+SAY @8000 
+= @8001
 IF ~~ THEN DO ~SetGlobal("K#SeeOrbs","GLOBAL",2)~ EXIT
 END
 
