@@ -14,11 +14,12 @@ IF ~Global("SheenaJoined","GLOBAL",1) Global("SHEENAPCAREONE","GLOBAL",1)~ THEN 
  END
 
 //Before the heart ritual in the romance
-IF ~Global("SheenaJoined","GLOBAL",1) Global("SHEENAPCAREONE","GLOBAL",0)~ THEN BEGIN SheenaOut
+IF ~Global("SheenaJoined","GLOBAL",1) Global("SHEENAPCAREONE","GLOBAL",0) Global("K#SHEENAToB","LOCALS",0)~ THEN BEGIN SheenaOut
 	SAY @1502
 		++ @1503 DO ~SetGlobal("K#SheenaOut","GLOBAL",0) JoinParty()~ EXIT
 		++ @1504 GOTO SheenaOut1a
 		++ @1505 GOTO SheenaOut2a
+		IF ~AreaCheck("AR4500")~ THEN REPLY ~This is the Pocket Plane and no one will disturb you here. Can you wait for me to return ?~ DO ~SetGlobal("K#SHEENASummoned","GLOBAL",3)~  GOTO SheenaToBWait
 END
 
 IF ~~ THEN BEGIN SheenaOut1a
@@ -32,3 +33,24 @@ IF ~~ THEN BEGIN SheenaOut2a
 		IF ~~ THEN DO ~SetGlobal("SheenaJoined","GLOBAL",0) EscapeArea()~ EXIT
 END
 
+IF WEIGHT #0 ~Global("K#SHEENASummoned","GLOBAL",1)~ THEN BEGIN SheenaToBSum
+	SAY ~<CHARNAME>...~ 
+	IF ~~ THEN REPLY ~I know, I know, would you join me ?~ DO ~SetGlobal("K#SHEENASummoned","GLOBAL",3)~ GOTO SheenaToBJoin
+	IF ~Global("SHEENAPCAREONE","GLOBAL",1)~ THEN REPLY ~Sheena ! I don't how we could have been separated after the ritual but we are one again.~ DO ~SetGlobal("K#SHEENASummoned","GLOBAL",3)~  GOTO SheenaToBRit
+	IF ~~ THEN REPLY ~This is the Pocket Plane and no one will disturb you here. Can you wait for me to return ?~ DO ~SetGlobal("K#SHEENASummoned","GLOBAL",3)~  GOTO SheenaToBWait
+END
+
+IF ~~ THEN BEGIN SheenaToBJoin
+	SAY ~Of course !~
+		IF ~~ THEN DO ~SetGlobal("K#SheenaOut","GLOBAL",0) JoinParty()~ EXIT
+END
+
+IF ~~ THEN BEGIN SheenaToBRit
+	SAY ~You make me languish...~
+		IF ~~ THEN DO ~SetGlobal("K#SheenaOut","GLOBAL",0) JoinParty()~ EXIT
+END
+
+IF ~~ THEN BEGIN SheenaToBWait
+	SAY ~I guess...~
+		IF ~~ THEN DO ~SetGlobal("SheenaJoined","GLOBAL",0) MoveToPointNoInterrupt([1726.1498])~ EXIT
+END

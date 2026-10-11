@@ -263,6 +263,9 @@ APPEND ~pdialog.2da~ ~K#SHEENA        SHEENAP           SHEENAJ          SHEENAD
 APPEND ~interdia.2da~ ~K#Sheena      BSHEENA       BSHEENA25~
 	UNLESS ~K#Sheena~
 
+	// Variable used by FUNCTION GW_FIND_DLG_RESPONSE_STRING to find after which transition NPC will be recalled by Fate Spirit.
+			OUTER_SET fatesp_string = 83364  // Rasaad = @83364  = ~Amenez-moi Rasaad, le moine de la Conscience Solaire humain.~
+
 ACTION_IF GAME_IS ~eet~ BEGIN
   INCLUDE ~EET/other/EET_functions.tph~
   LAF ~EET_NPC_TRANSITION~
@@ -272,14 +275,14 @@ ACTION_IF GAME_IS ~eet~ BEGIN
     STR_VAR
       dv = "K#SHEENA"
       override_SoA = "K#SHEENA"
-      override_ToB = "K#SHEENA"
+ //     override_ToB = "K#SHEENA"
       dialog_ToB = "SHEENAP"
+      cre_ToB = "K#Sheena"
       traFile = EVAL "weidu_external/Sheena/tra/autotra/%LANGUAGE%/Sheena.tra"
       string = "@9000" //Bring me Sheena, the half-dragon fighter/wizard.
       stringPosDV = "Skie"
   END
 END ELSE BEGIN
-/*		INCLUDE ~Sheena/lib/gw_dlg_functions.tpa~
+		INCLUDE ~Sheena/lib/gw_dlg_functions.tpa~
   COMPILE EVALUATE_BUFFER ~Sheena/Dialogues/FATESP.d~ USING ~weidu_external/Sheena/tra/autotra/%LANGUAGE%/Sheena.tra~
- */
 END
