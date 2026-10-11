@@ -66,7 +66,11 @@ LANGUAGE ~Cestina (Prelozil Edvin)~
 
 LANGUAGE ~Russian (ART BERSERKER & Aerie TEAM)~
 			~Russian~
-				~Sheena/tra/Russian/SETUP.tra~
+				~Sheena/tra/Russian/setup.tra~
+		 
+LANGUAGE ~Chinese~ 
+			~Chinese~
+				~Sheena/TRA/Chinese/setup.tra~
 
 ///////////////////////////////////////////////////////////////
 
@@ -237,6 +241,7 @@ EXTEND_BOTTOM ~AR1202.bcs~ ~Sheena/Scripts/K#AR1202.baf~
 COPY ~Sheena/CutScene/K#FIRKRA.cre~ ~override/K#FIRKRA.cre~
 COPY ~Sheena/CutScene/K#FIRMAG.cre~ ~override/K#FIRMAG.cre~
 COPY ~Sheena/CutScene/K#ORC.cre~ ~override/K#ORC.cre~
+	WRITE_ASCII DEATHVAR ~K#ORC~ #32
 COPY ~Sheena/CutScene/K#CUTSHE.cre~ ~override/K#CUTSHE.cre~
 COPY ~Sheena/CutScene/K#1203.are~ ~override/K#1203.are~
 COPY ~Sheena/Spell/K#POLYD.spl~ ~override/K#POLYD.spl~

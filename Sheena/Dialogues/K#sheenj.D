@@ -1106,7 +1106,7 @@ IF ~InParty("K#SHEENA") !Dead("K#SHEENA") Global("SheenRHD","GLOBAL",1)~  THEN E
 END
 
 CHAIN
-IF ~Global("SheenaDragBlack","LOCALS",0) See("DRAGBLAK")~ THEN SHEENAJ SheenaBlackDrag1
+IF ~Global("SheenaDragBlack","LOCALS",0) See("Dragblac")~ THEN SHEENAJ SheenaBlackDrag1
 @8321 DO ~SetGlobal("SheenaDragBlack","LOCALS",1)~
 == DRAGBLAC
 @8322
@@ -1121,7 +1121,7 @@ IF ~InParty("K#SHEENA") !Dead("K#SHEENA") Global("SheenRHD","GLOBAL",0)~  THEN E
 END
 
 CHAIN
-IF ~Global("SheenaDragBlack","LOCALS",0) See("DRAGBLAK")~ THEN SHEENAJ SheenaBlackDrag2
+IF ~Global("SheenaDragBlack","LOCALS",0) See("Dragblac")~ THEN SHEENAJ SheenaBlackDrag2
 @8321 DO ~SetGlobal("SheenaDragBlack","LOCALS",1) ApplySpellRES("K#POLYS",Myself)~
 == DRAGBLAC
 @8322

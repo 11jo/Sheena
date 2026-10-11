@@ -98,6 +98,7 @@ REPLACE ~99200~ @1 //name
 @103 = ~Mon Seigneur, elle n'a point voulu entendre raison et nous avons perdu quatre orogs en essayant de la ligoter, saine et sauve. ~
 @104 = ~Hmm...Mis à part quelques bleus, elle semble être... indemne. Tu peux t'estimer heureux qu'elle le soit, Conster. Quant à toi, Sheena, oublie cet incident et laisse-moi t'expliquer la raison de ta venue.~
 @104 = ~Depuis la mort de ta mère et la rumeur persistante d'une enfant présente aux funérailles, je t'ai inlassablement recherchée.~
+@105 = ~Ever since your mother's death when words reaching my ears of *a daughter* attending her funeral, I have been looking for you relentlessly. ~
 @106 = ~Mais... pourquoi ?~
 @107 = ~Il y a bien longtemps, j'ai eu une petite aventure avec ta mère. Celle-ci était si insignifiante que je n'aurais jamais osé m'imaginer qu'un enfant résulterait d'une si courte rencontre.~
 @108 = ~À mon grand désarroi aujourd'hui, je la quittai, pour ainsi dire, ignorant de ce qui croissait en son sein.~
@@ -280,6 +281,7 @@ REPLACE ~99200~ @1 //name
 @2059 = ~Ces deux précieux objets avaient été conservés dans une boîte en ivoire pendant plus de quinze ans, dans l'attente d'une occasion très spéciale: mon quinzième anniversaire et la création du Vengeur de Sheena.~
 @2060 = ~Je dois le reconnaître, tu possèdes l'une des plus belles épées à deux mains que j'aie pu voir.~
 @2061 = ~Je me suis toujours demandé comment les forgerons instillaient de la magie dans les armes. Pourrais-tu lever le voile sur quelques-uns des mystères de l'art de ton beau-père?~
+@2062 = ~I am impressed by both your blade and your stepfather's skill.~
 @2063 = ~La gravure ne prouve pas grand'chose en elle-même. Je parierais que tu as fabriqué cette histoire de toutes pièces pour m'impressionner.~
 @2064 = ~Des Illithids?~
 @2065 = ~Mon véritable père était peut-être Firkraag, mais pour moi, mon père sera toujours Samuel.~
@@ -1268,7 +1270,8 @@ REPLACE ~99200~ @1 //name
 @8266 = ~Garde ton regard au-dessus de ma poitrine, si tu le veux bien. Par ailleurs, ces remarques grossières sont loin d'être les bienvenues.~
 @8267 = ~(Sheena penche sa tête sur votre épaule et vous marchez côte à côte pendant un long moment.)~
 @8268 = ~(Sheena retire sa main brusquement, et saisit fermement le pommeau de son épée, visiblement embarrassée par cette tentative jugée, trop intime.)~
-/* Seulement no 1 est écrit 
+
+// Seulement no 1 est écrit 
 @8269 = ~I was having a late afternoon stroll in the mountains when an early night caught up with me, and left me unable to find my way home.~
 @8270 = ~The sky was darkened by a rising storm. I needed to find a shelter quickly before the freezing winds of this imminent blizzard killed me.~
 @8271 = ~I luckily found a cavern but its entrance was kept by an enormous and irritable grizzly bear.~
@@ -1280,7 +1283,8 @@ REPLACE ~99200~ @1 //name
 @8277 = ~I used a charm spell on the bear and luckily it worked. I then tied him up and brought him safely inside the cave.~
 @8278 = ~To my amazement, it was a -she- bear and she had several new born cubs.~
 @8279 = ~I still feel relieved I did not kill her for the cubs would not have survived long without their mother.~
-*/
+// Seulement no 1 est écrit 
+
 @8280 = ~(Sheena place ses mains autour de votre cou et vous attire lentement vers elle, en abaissant ces paupières; ces lèvres plantureuses s'ouvrent légèrement.)~
 @8281 = ~(Vos langues s'entremêlent dans un frénétique et fiévreux duel à l'épée.)~
 @8282 = ~(Le moment semble durer une éternité, mais comme toujours, ces moments exquis s'évanouissent trop vite.)~

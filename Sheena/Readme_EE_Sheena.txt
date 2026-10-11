@@ -1,7 +1,11 @@
 -------------------------------------------------------------------------------------------
 Sheena, A Half Dragon Tale - version 2.6
 
-Author: Edvin - edvin@seznam.cz
+Author: Red Knight - j_f_kalban@caramail.com
+Website: http://www.blackwyrmlair.net/~sheenaslair/Index.htm
+Forum: http://forums.blackwyrmlair.net/index.php?s=18d3367ae2ea6557057391b075afd2dc&showforum=98
+
+EE first update: Edvin - edvin@seznam.cz
 Forum: https://forums.beamdog.com/discussion/comment/800949#Comment_800949
 -------------------------------------------------------------------------------------------
 

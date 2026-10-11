@@ -74,5 +74,4 @@ THEN
 		ActionOverride("K#FIRMAG",DestroySelf())
 		Wait(1)
 		StartCutScene("SHEMOV1b")
-		
-
+END
