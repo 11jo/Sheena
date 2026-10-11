@@ -91,20 +91,20 @@ SetGlobal("K#Died","GLOBAL",0)
 END
 
 IF 
-Or(2)
-!InParty("K#Sheena")
-!InParty(Myself)
-Global("SheenaJoined","GLOBAL",1)
-Global("K#SheenaOut","GLOBAL",0)
+	OR(2)
+		!InParty("K#Sheena")
+		!InParty(Myself)
+	Global("SheenaJoined","GLOBAL",1)
+	Global("K#SheenaOut","GLOBAL",0)
 THEN
-RESPONSE #100
-SetGlobal("K#SheenaOut","GLOBAL",1)
-SetLeavePartyDialogFile()
+	RESPONSE #100
+		SetGlobal("K#SheenaOut","GLOBAL",1)
+		SetLeavePartyDialogFile()
 END
 
 //SHEENA FIRST MEETING - POLYMORPHS INTO HUMAN WHEN FIRKRAAG DIES
 IF 
-Global("KH#SheenaExists","GLOBAL",1)
+Global("KH#SheenaExists","LOCALS",1)
 Global("FirstForm","LOCALS",0)
 !See(Player1)
 THEN
@@ -114,41 +114,41 @@ ApplySpellRES("K#POLYS",Myself)
 END
 
 IF 
-Global("KH#SheenaExists","GLOBAL",1)
-Global("FirstForm","LOCALS",1)
-Global("SPRITE_IS_DEADFIRKRA02","GLOBAL",1)
-OR(6)
-Detect(Player1)
-Detect(Player2)
-Detect(Player3)
-Detect(Player4)
-Detect(Player5)
-Detect(Player6)
+	Global("KH#SheenaExists","LOCALS",1)
+	Global("FirstForm","LOCALS",1)
+	Global("SPRITE_IS_DEADFIRKRA02","GLOBAL",1)
+	OR(6)
+		Detect(Player1)
+		Detect(Player2)
+		Detect(Player3)
+		Detect(Player4)
+		Detect(Player5)
+		Detect(Player6)
 THEN
-RESPONSE #100
-SetGlobal("KH#SheenaExists","GLOBAL",2)
-SetGlobal("FirstForm","LOCALS",2)
-ApplySpellRES("K#POLYB",Myself)
+	RESPONSE #100
+		SetGlobal("KH#SheenaExists","LOCALS",2)
+		SetGlobal("FirstForm","LOCALS",2)
+		ApplySpellRES("K#POLYB",Myself)
 END
 
 //SHEENA POLYMORPH SCRIPT
 //IF IN HALF DRAGON FORM IN A CITY, POLYMORPH INTO HUMAN AND DISABLE BUTTON
 IF
- Global("SheenRHD","GLOBAL",1)//Sheena is in dragon form
- Global("K#BENAB","GLOBAL",1)//Ability button is enabled
- Global("UnlockPolyHD","GLOBAL",0)//The PC is not in control of Sheenas form
- InParty(Myself)
- OR(4)
- AreaType(CITY)
- AreaType(FOREST)
- AreaCheck("AR1100")
- AreaCheck("AR1204")
- THEN
- RESPONSE #100
-ApplySpellRES("K#DSABLE",Myself) //Disable ability button
-ApplySpellRES("K#POLYB", Myself) //Change into a human form
-RemoveSpellRES("K#REDDRA")
- END
+	Global("SheenRHD","GLOBAL",1)//Sheena is in dragon form
+	Global("K#BENAB","GLOBAL",1)//Ability button is enabled
+	Global("UnlockPolyHD","GLOBAL",0)//The PC is not in control of Sheenas form
+	InParty(Myself)
+	OR(4)
+		AreaType(CITY)
+		AreaType(FOREST)
+		AreaCheck("AR1100")
+		AreaCheck("AR1204")
+THEN
+	RESPONSE #100
+		ApplySpellRES("K#DSABLE",Myself) //Disable ability button
+		ApplySpellRES("K#POLYB", Myself) //Change into a human form
+		RemoveSpellRES("K#REDDRA")
+END
 
 IF
  Global("SheenRHD","GLOBAL",0)//Sheena is in human form
@@ -161,12 +161,12 @@ END
 
 //DISABLE POLYMORPH IF LOOK LIKE DROW - KEEP THE ILLUSION GOING
 IF
-Global("PlayerLooksLikeDrow","GLOBAL",1)//The illusion started
-Global("SheenaLookLikeDrow","GLOBAL",0)
+	Global("PlayerLooksLikeDrow","GLOBAL",1)//The illusion started
+	Global("SheenaLookLikeDrow","GLOBAL",0)
 THEN
-RESPONSE #100
-SetGlobal("SheenaLookLikeDrow","GLOBAL",1)
-ApplySpellRES("K#DSABLE",Myself) //Disable ability button
+	RESPONSE #100
+		SetGlobal("SheenaLookLikeDrow","GLOBAL",1)
+		ApplySpellRES("K#DSABLE",Myself) //Disable ability button
 END
 
 //Remove spell ability: change into HD if I am an HD already
@@ -231,50 +231,50 @@ END
 
 //FIXING SHEENA WITH A HOTKEY
 IF
-  HOTKEY(S)
+	HotKey(S)
 THEN
-RESPONSE #100
-  ActionOverride(Myself,StartCutScene("K#SheFix"))
+	RESPONSE #100
+		ActionOverride(Myself,StartCutScene("K#SheFix"))
 END
 
 
 //IF IN HALF DRAGON FORM IN A CITY, POLYMORPH INTO HUMAN AND DISABLE BUTTON
 IF
- Global("SheenRHD","GLOBAL",1)//Sheena is in dragon form
- Global("K#BENAB","GLOBAL",0)//Ability button is disabled
- InParty(Myself)
- Global("UnlockPolyHD","GLOBAL",0)//The PC is not in control of Sheenas form
- OR(5)
- AreaType(CITY)
- AreaType(FOREST)
- AreaCheck("AR1100")
- AreaCheck("AR1204")
- AreaCheck("AR2300")//For the shark king interjection
- THEN
- RESPONSE #100
- Wait(2)
-RemoveSpellRES("K#REDDRA")
-ApplySpellRES("K#DSABLE",Myself) //Disable ability button
-ApplySpellRES("K#POLYB", Myself) //Change into a human form
+	Global("SheenRHD","GLOBAL",1) //Sheena is in dragon form
+	Global("K#BENAB","GLOBAL",0) //Ability button is disabled
+	InParty(Myself)
+	Global("UnlockPolyHD","GLOBAL",0) //The PC is not in control of Sheenas form
+	OR(5)
+		AreaType(CITY)
+		AreaType(FOREST)
+		AreaCheck("AR1100")
+		AreaCheck("AR1204")
+		AreaCheck("AR2300") //For the shark king interjection
+THEN
+	RESPONSE #100
+		Wait(2)
+		RemoveSpellRES("K#REDDRA")
+		ApplySpellRES("K#DSABLE",Myself) //Disable ability button
+		ApplySpellRES("K#POLYB", Myself) //Change into a human form
  END
 
 
 //IF IN HUMAN FORM IN A CITY, DISABLE INNATE ABILITY BUTTON
 IF
- Global("SheenRHD","GLOBAL",0)//Sheena in human form
- Global("K#BENAB","GLOBAL",1)//Ability button enabled
- Global("UnlockPolyHD","GLOBAL",0)//The PC is not in control of Sheenas form
- InParty(Myself)
- OR(4)
- AreaType(CITY)
- AreaType(FOREST)
- AreaCheck("AR1100")
- AreaCheck("AR1204")
- THEN
- RESPONSE #100
- //DISABLE INNATE ABBILITY BUTTON
-ApplySpellRES("K#DSABLE",Myself) //Disable ability button
- END
+	Global("SheenRHD","GLOBAL",0) //Sheena in human form
+	Global("K#BENAB","GLOBAL",1) //Ability button enabled
+	Global("UnlockPolyHD","GLOBAL",0) //The PC is not in control of Sheenas form
+	InParty(Myself)
+	OR(4)
+		AreaType(CITY)
+		AreaType(FOREST)
+		AreaCheck("AR1100")
+		AreaCheck("AR1204")
+THEN
+	RESPONSE #100
+//DISABLE INNATE ABBILITY BUTTON
+		ApplySpellRES("K#DSABLE",Myself) //Disable ability button
+END
 
 //IF OUTSIDE A CITY, ENABLE THE INNATE ABILITY BUTTON
 IF
@@ -352,48 +352,48 @@ END
 
 
 IF
-  InParty(Myself)
-  RealGlobalTimerExpired("SheenaTalkTime","GLOBAL")
-  Global("SheenaMatch","GLOBAL",1)
-  !AreaType(DUNGEON)
-  See(Player1)
-  CombatCounter(0)
-OR(10)
-  Global("SheenaTalk","LOCALS",1)
-  Global("SheenaTalk","LOCALS",3)
-  Global("SheenaTalk","LOCALS",5)
-  Global("SheenaTalk","LOCALS",7)
-  Global("SheenaTalk","LOCALS",9)
-  Global("SheenaTalk","LOCALS",11)
-  Global("SheenaTalk","LOCALS",13)
-  Global("SheenaTalk","LOCALS",15)
-  Global("SheenaTalk","LOCALS",17)
-  Global("SheenaTalk","LOCALS",19)
- THEN
- RESPONSE #100
-  IncrementGlobal("SheenaTalk","LOCALS",1)
-  Interact(Player1)
+	InParty(Myself)
+	RealGlobalTimerExpired("SheenaTalkTime","GLOBAL")
+	Global("SheenaMatch","GLOBAL",1)
+	!AreaType(DUNGEON)
+	See(Player1)
+	CombatCounter(0)
+	OR(10)
+		Global("SheenaTalk","LOCALS",1)
+		Global("SheenaTalk","LOCALS",3)
+		Global("SheenaTalk","LOCALS",5)
+		Global("SheenaTalk","LOCALS",7)
+		Global("SheenaTalk","LOCALS",9)
+		Global("SheenaTalk","LOCALS",11)
+		Global("SheenaTalk","LOCALS",13)
+		Global("SheenaTalk","LOCALS",15)
+		Global("SheenaTalk","LOCALS",17)
+		Global("SheenaTalk","LOCALS",19)
+THEN
+	RESPONSE #100
+		IncrementGlobal("SheenaTalk","LOCALS",1)
+		Interact(Player1)
 END
 
 IF
-  InParty(Myself)
-  RealGlobalTimerExpired("SheenaTalkTime","GLOBAL")
-  Global("SheenaMatch","GLOBAL",1)
-OR(10)
-  Global("SheenaTalk","LOCALS",2)
-  Global("SheenaTalk","LOCALS",4)
-  Global("SheenaTalk","LOCALS",6)
-  Global("SheenaTalk","LOCALS",8)
-  Global("SheenaTalk","LOCALS",10)
-  Global("SheenaTalk","LOCALS",12)
-  Global("SheenaTalk","LOCALS",14)
-  Global("SheenaTalk","LOCALS",16)
-  Global("SheenaTalk","LOCALS",18)
-  Global("SheenaTalk","LOCALS",20)
+	InParty(Myself)
+	RealGlobalTimerExpired("SheenaTalkTime","GLOBAL")
+	Global("SheenaMatch","GLOBAL",1)
+	OR(10)
+		Global("SheenaTalk","LOCALS",2)
+		Global("SheenaTalk","LOCALS",4)
+		Global("SheenaTalk","LOCALS",6)
+		Global("SheenaTalk","LOCALS",8)
+		Global("SheenaTalk","LOCALS",10)
+		Global("SheenaTalk","LOCALS",12)
+		Global("SheenaTalk","LOCALS",14)
+		Global("SheenaTalk","LOCALS",16)
+		Global("SheenaTalk","LOCALS",18)
+		Global("SheenaTalk","LOCALS",20)
 THEN
- RESPONSE #100
-   RealSetGlobalTimer("SheenaTalkTime","GLOBAL",3600)//1 HOUR
-   IncrementGlobal("SheenaTalk","LOCALS",1)
+	RESPONSE #100
+		RealSetGlobalTimer("SheenaTalkTime","GLOBAL",3600) //1 HOUR
+		IncrementGlobal("SheenaTalk","LOCALS",1)
 END
 
 //Romance - Love talk start here
@@ -415,41 +415,41 @@ IF
 END
 
 IF
-  InParty(Myself)
-  RealGlobalTimerExpired("SheenaLoveTalkTime","GLOBAL")
-  Global("SheenaMatch","GLOBAL",1)
-  Global("SheenaRomanceActive","GLOBAL",2)
-  !AreaType(DUNGEON)
-  See(Player1)
-  CombatCounter(0)
-OR(5)
-  Global("SheenaLoveTalk","LOCALS",1)
-  Global("SheenaLoveTalk","LOCALS",3)
-  Global("SheenaLoveTalk","LOCALS",5)
-  Global("SheenaLoveTalk","LOCALS",7)
-  Global("SheenaLoveTalk","LOCALS",13)
-   THEN
- RESPONSE #100
-  PlaySong(0)
-  IncrementGlobal("SheenaLoveTalk","LOCALS",1)
-  Interact(Player1)
+	InParty(Myself)
+	RealGlobalTimerExpired("SheenaLoveTalkTime","GLOBAL")
+	Global("SheenaMatch","GLOBAL",1)
+	Global("SheenaRomanceActive","GLOBAL",2)
+	!AreaType(DUNGEON)
+	See(Player1)
+	CombatCounter(0)
+	OR(5)
+		Global("SheenaLoveTalk","LOCALS",1)
+		Global("SheenaLoveTalk","LOCALS",3)
+		Global("SheenaLoveTalk","LOCALS",5)
+		Global("SheenaLoveTalk","LOCALS",7)
+		Global("SheenaLoveTalk","LOCALS",13)
+THEN
+	RESPONSE #100
+		PlaySong(0)
+		IncrementGlobal("SheenaLoveTalk","LOCALS",1)
+		Interact(Player1)
 END
 
 IF
-  InParty(Myself)
-  RealGlobalTimerExpired("SheenaLoveTalkTime","GLOBAL")
-  Global("SheenaMatch","GLOBAL",1)
-  Global("SheenaRomanceActive","GLOBAL",2)
-OR(5)
-  Global("SheenaLoveTalk","LOCALS",2)
-  Global("SheenaLoveTalk","LOCALS",4)
-  Global("SheenaLoveTalk","LOCALS",6)
-  Global("SheenaLoveTalk","LOCALS",8)
-  Global("SheenaLoveTalk","LOCALS",14)
-  THEN
- RESPONSE #100
-   RealSetGlobalTimer("SheenaLoveTalkTime","GLOBAL",3600)//1 HOUR
-   IncrementGlobal("SheenaLoveTalk","LOCALS",1)
+	InParty(Myself)
+	RealGlobalTimerExpired("SheenaLoveTalkTime","GLOBAL")
+	Global("SheenaMatch","GLOBAL",1)
+	Global("SheenaRomanceActive","GLOBAL",2)
+	OR(5)
+		Global("SheenaLoveTalk","LOCALS",2)
+		Global("SheenaLoveTalk","LOCALS",4)
+		Global("SheenaLoveTalk","LOCALS",6)
+		Global("SheenaLoveTalk","LOCALS",8)
+		Global("SheenaLoveTalk","LOCALS",14)
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("SheenaLoveTalkTime","GLOBAL",3600) //1 HOUR
+		IncrementGlobal("SheenaLoveTalk","LOCALS",1)
 END
 
 //Flirt OFF
@@ -468,21 +468,21 @@ IF
 ////////////////////////////////////////////////////////
 //Mazzy second and third banter
 IF
-  InParty(Myself)
-  See("Mazzy")
-  !Dead("Mazzy")
-  !AreaType(DUNGEON)
-  CombatCounter(0)
-  RealGlobalTimerExpired("SheenaTalkMazzyTimer","GLOBAL")
-  Or(2)
-  Global("SheenaTalkMazzy","GLOBAL",3)
-  Global("SheenaTalkMazzy","GLOBAL",5)
- THEN
- RESPONSE #100
-  PlaySong(0)
-  IncrementGlobal("SheenaTalkMazzy","GLOBAL",1)
-  RealSetGlobalTimer("SheenaTalkMazzyTimer","GLOBAL",3600)//1 HOUR
-  Interact("Mazzy")
+	InParty(Myself)
+	See("Mazzy")
+	!Dead("Mazzy")
+	!AreaType(DUNGEON)
+	CombatCounter(0)
+	RealGlobalTimerExpired("SheenaTalkMazzyTimer","GLOBAL")
+	OR(2)
+		Global("SheenaTalkMazzy","GLOBAL",3)
+		Global("SheenaTalkMazzy","GLOBAL",5)
+THEN
+	RESPONSE #100
+		PlaySong(0)
+		IncrementGlobal("SheenaTalkMazzy","GLOBAL",1)
+		RealSetGlobalTimer("SheenaTalkMazzyTimer","GLOBAL",3600)//1 HOUR
+		Interact("Mazzy")
 END
 
 //Cernd woods
@@ -523,7 +523,7 @@ IF
   InParty("Aerie")
   !Dead("Aerie")
   See("Aerie")
-  AreaType(Dungeon)
+  AreaType(DUNGEON)
   Global("SheenRHD","GLOBAL",1)
   CombatCounter(0)
   Global("K#SheenaAerie","GLOBAL",0)
@@ -610,7 +610,7 @@ RealGlobalTimerExpired("SheTalkSlayer","LOCALS")
 Global("SlayerTalkReady","LOCALS",1)
 CombatCounter(0)
 InParty(Myself)
-!Dead(Myself)
+!StateCheck(Myself,STATE_REALLY_DEAD)
 THEN
 RESPONSE #100
 SetGlobal("SlayerTalkReady","LOCALS",2)
@@ -642,21 +642,21 @@ END
 
 //SEE SPECIFIC CREATURES
 IF
-OR(7)
-See("Daumber")//Umber hulk
-See("KPUMB01")
-See("PPUMB02")
-See("UDILL02")
-See("UDUMBER02")
-See("UDUMBER")
-See("UMBHUL01")
-Global("K#SeeUmberHulk","GLOBAL",0)
-InParty(Myself)
-!CombatCounter(0)
+	OR(7)
+		See("Daumber") //Umber hulk
+		See("KPUMB01")
+		See("PPUMB02")
+		See("UDILL02")
+		See("UDUMBER02")
+		See("UDUMBER")
+		See("UMBHUL01")
+	Global("K#SeeUmberHulk","GLOBAL",0)
+	InParty(Myself)
+	!CombatCounter(0)
 THEN
-RESPONSE #100
-SetGlobal("K#SeeUmberHulk","GLOBAL",1)
-ActionOverride(Myself,StartDialogueNoSet(Player1))
+	RESPONSE #100
+		SetGlobal("K#SeeUmberHulk","GLOBAL",1)
+		ActionOverride(Myself,StartDialogueNoSet(Player1))
 END
 
 //Bug remover - if the dialog never triggered. 
@@ -670,24 +670,24 @@ SetGlobal("K#SeeUmberHulk","GLOBAL",99)
 END
 
 IF
-OR(10)
-See("MINDVAM")//Illithid - mind flayer
-See("MINDUL01")
-See("MINDAL01")
-See("MINDFL01")
-See("UDVAMP")
-See("DAMIND1")
-See("DAMIND2")
-See("DPMON01")
-See("ELEILL01")
-See("ELMIND01")
-InParty(Myself)
-!CombatCounter(0)
-Global("K#SeeIllithids","GLOBAL",0)
+	OR(10)
+		See("MINDVAM") //Illithid - mind flayer
+		See("MINDUL01")
+		See("MINDAL01")
+		See("MINDFL01")
+		See("UDVAMP")
+		See("DAMIND1")
+		See("DAMIND2")
+		See("DPMON01")
+		See("ELEILL01")
+		See("ELMIND01")
+	InParty(Myself)
+	!CombatCounter(0)
+	Global("K#SeeIllithids","GLOBAL",0)
 THEN
-RESPONSE #100
-SetGlobal("K#SeeIllithids","GLOBAL",1)
-ActionOverride(Myself,StartDialogueNoSet(Player1))
+	RESPONSE #100
+		SetGlobal("K#SeeIllithids","GLOBAL",1)
+		ActionOverride(Myself,StartDialogueNoSet(Player1))
 END
 
 //Bug remover
@@ -703,21 +703,21 @@ END
 
 //Golems
 IF
-OR(7)
-See("GOLADA01")//Adamantite golem
-See("GOLKILL2")
-See("KPGOL04")
-See("GOLIRO01")//Iron Golem
-See("SHIRON")
-See("Adamantite Golem")
-See("Iron Golem")
-InParty(Myself)
-!CombatCounter(0)
-Global("K#SeeAdamantineGolem","GLOBAL",0)
+	OR(7)
+		See("GOLADA01")//Adamantite golem
+		See("GOLKILL2")
+		See("KPGOL04")
+		See("GOLIRO01")//Iron Golem
+		See("SHIRON")
+		See("Adamantite Golem")
+		See("Iron Golem")
+	InParty(Myself)
+	!CombatCounter(0)
+	Global("K#SeeAdamantineGolem","GLOBAL",0)
 THEN
-RESPONSE #100
-SetGlobal("K#SeeAdamantineGolem","GLOBAL",1)
-ActionOverride(Myself,StartDialogueNoSet(Player1))
+	RESPONSE #100
+		SetGlobal("K#SeeAdamantineGolem","GLOBAL",1)
+		StartDialogueNoSet(Player1)
 END
 
 //Bug remover
@@ -730,26 +730,26 @@ SetGlobal("K#SeeAdamantineGolem","GLOBAL",99)
 END
 
 IF
-OR(13)
-See("BEHELD01")//Orbs
-See("HELLBEH1")
-See("HELLBEH2")
-See("HL0RB")
-See("OBSDEM03")
-See("BEHOBS01")
-See("BEHOLD01")
-See("BESPE01")
-See("BEHUND01")
-See("CULTBH3")
-See("RINGBEH01")
-See("UDBEHO01")
-See("UDBEHO02")
-InParty(Myself)
-Global("K#SeeOrbs","GLOBAL",0)
+	OR(13)
+		See("BEHELD01") //Orbs
+		See("HELLBEH1")
+		See("HELLBEH2")
+		See("HL0RB")
+		See("OBSDEM03")
+		See("BEHOBS01")
+		See("BEHOLD01")
+		See("BESPE01")
+		See("BEHUND01")
+		See("CULTBH3")
+		See("RINGBEH01")
+		See("UDBEHO01")
+		See("UDBEHO02")
+	InParty(Myself)
+	Global("K#SeeOrbs","GLOBAL",0)
 THEN
-RESPONSE #100
-SetGlobal("K#SeeOrbs","GLOBAL",1)
-ActionOverride(Myself,StartDialogueNoSet(Player1))
+	RESPONSE #100
+		SetGlobal("K#SeeOrbs","GLOBAL",1)
+		StartDialogueNoSet(Player1)
 END
 
 //Bug remover
@@ -763,21 +763,21 @@ END
 
 
 IF
-OR(8)
-See("LICH01")//Lich
-See("CEDELICH")
-See("HLKANG")//Kangaxx
-See("HLLICH")//Elemental Lich
-See("HLSHADE")//Shade lich
-See("HLSHANG")//Shangalar
-See("Lich")
-See("JARLICH")
-InParty(Myself)
-Global("K#SeeLich","GLOBAL",0)
+	OR(8)
+		See("LICH01")//Lich
+		See("CEDELICH")
+		See("HLKANG")//Kangaxx
+		See("HLLICH")//Elemental Lich
+		See("HLSHADE")//Shade lich
+		See("HLSHANG")//Shangalar
+		See("Lich")
+		See("JARLICH")
+	InParty(Myself)
+	Global("K#SeeLich","GLOBAL",0)
 THEN
-RESPONSE #100
-SetGlobal("K#SeeLich","GLOBAL",1)
-ActionOverride(Myself,StartDialogueNoSet(Player1))
+	RESPONSE #100
+		SetGlobal("K#SeeLich","GLOBAL",1)
+		StartDialogueNoSet(Player1)
 END
 
 //Bug remover
@@ -792,22 +792,22 @@ END
 
 //Shadows
 IF
-OR(8)
-See("shadow01")//
-See("shadowsu")
-See("shadfi01")//
-See("kshadow")//
-See("rngsha")//
-See("rngsha01")//
-See("rngsha03")
-See("sdshadow")
-InParty(Myself)
-!CombatCounter(0)
-Global("K#SeeShadows","GLOBAL",0)
+	OR(8)
+		See("shadow01")//
+		See("shadowsu")
+		See("shadfi01")//
+		See("kshadow")//
+		See("rngsha")//
+		See("rngsha01")//
+		See("rngsha03")
+		See("sdshadow")
+	InParty(Myself)
+	!CombatCounter(0)
+	Global("K#SeeShadows","GLOBAL",0)
 THEN
-RESPONSE #100
-SetGlobal("K#SeeShadows","GLOBAL",1)
-ActionOverride(Myself,StartDialogueNoSet(Player1))
+	RESPONSE #100
+		SetGlobal("K#SeeShadows","GLOBAL",1)
+		StartDialogueNoSet(Player1)
 END
 
 //Bug remover
@@ -822,19 +822,19 @@ END
 
 //Yuan-ti
 IF
-OR(5)
-See("icyuan02")//
-See("kpyuan01")
-See("icyuan01")//
-See("icyuan03")//
-See("kpsham01")//
-InParty(Myself)
-!CombatCounter(0)
-Global("K#SeeYuanTi","GLOBAL",0)
+	OR(5)
+		See("icyuan02")//
+		See("kpyuan01")
+		See("icyuan01")//
+		See("icyuan03")//
+		See("kpsham01")//
+	InParty(Myself)
+	!CombatCounter(0)
+	Global("K#SeeYuanTi","GLOBAL",0)
 THEN
-RESPONSE #100
-SetGlobal("K#SeeYuanTi","GLOBAL",1)
-ActionOverride(Myself,StartDialogueNoSet(Player1))
+	RESPONSE #100
+		SetGlobal("K#SeeYuanTi","GLOBAL",1)
+		StartDialogueNoSet(Player1)
 END
 
 //Bug remover
@@ -849,15 +849,15 @@ END
 
 //ARRIVED IN SPECIFIC PLACES
 IF
-Delay(10)
-AreaCheck("AR2100")
-InParty(Myself)
-CombatCounter(0)
-Global("K#SeeUnderDark","GLOBAL",0)
+	Delay(10)
+	AreaCheck("AR2100")
+	InParty(Myself)
+	CombatCounter(0)
+	Global("K#SeeUnderDark","GLOBAL",0)
 THEN
-RESPONSE #100
-SetGlobal("K#SeeUnderDark","GLOBAL",1)
-ActionOverride(Myself,StartDialogueNoSet(Player1))
+	RESPONSE #100
+		SetGlobal("K#SeeUnderDark","GLOBAL",1)
+		StartDialogueNoSet(Player1)
 END
 
 //Bug remover
@@ -871,22 +871,22 @@ END
 
 
 IF
-Delay(10)
-OR(7)
-AreaCheck("AR0300")//docks
-AreaCheck("AR0400")//slums
-AreaCheck("AR0500")//bridge
-AreaCheck("AR0700")//promenade
-AreaCheck("AR0800")//graveyard
-AreaCheck("AR0900")//Temple
-AreaCheck("AR1000")//governement
-InParty(Myself)
-CombatCounter(0)
-Global("K#SeeAmn","GLOBAL",0)
+	Delay(10)
+	OR(7)
+		AreaCheck("AR0300")//docks
+		AreaCheck("AR0400")//slums
+		AreaCheck("AR0500")//bridge
+		AreaCheck("AR0700")//promenade
+		AreaCheck("AR0800")//graveyard
+		AreaCheck("AR0900")//Temple
+		AreaCheck("AR1000")//governement
+	InParty(Myself)
+	CombatCounter(0)
+	Global("K#SeeAmn","GLOBAL",0)
 THEN
-RESPONSE #100
-SetGlobal("K#SeeAmn","GLOBAL",1)
-ActionOverride(Myself,StartDialogueNoSet(Player1))
+	RESPONSE #100
+		SetGlobal("K#SeeAmn","GLOBAL",1)
+		StartDialogueNoSet(Player1)
 END
 
 //Bug remover
@@ -908,7 +908,7 @@ Global("K#SeeBrynn","GLOBAL",0)
 THEN
 RESPONSE #100
 SetGlobal("K#SeeBrynn","GLOBAL",1)
-ActionOverride(Myself,StartDialogueNoSet(Player1))
+StartDialogueNoSet(Player1)
 END
 
 //Bug remover
@@ -930,7 +930,7 @@ Global("K#SeePlanarHell","GLOBAL",0)
 THEN
 RESPONSE #100
 SetGlobal("K#SeePlanarHell","GLOBAL",1)
-ActionOverride(Myself,StartDialogueNoSet(Player1))
+StartDialogueNoSet(Player1)
 END
 
 //Bug remover
@@ -986,38 +986,38 @@ END
 //ADD XP
 IF 
 XPLT(Player1,500000)//
-Global("KH#SheenaExists","GLOBAL",2)
+Global("KH#SheenaExists","LOCALS",2)
 THEN
 RESPONSE #100
-SetGlobal("KH#SheenaExists","GLOBAL",3)
+SetGlobal("KH#SheenaExists","LOCALS",3)
 END
 
 IF 
 XPGT(Player1,500000)//500001
 XPLT(Player1,1000000)//999999
-Global("KH#SheenaExists","GLOBAL",2)
+Global("KH#SheenaExists","LOCALS",2)
 THEN
 RESPONSE #100
-SetGlobal("KH#SheenaExists","GLOBAL",3)
+SetGlobal("KH#SheenaExists","LOCALS",3)
 AddXPObject(Myself,400000)
 END
 
 IF 
 XPGT(Player1,999999)//
 XPLT(Player1,1500000)//
-Global("KH#SheenaExists","GLOBAL",2)
+Global("KH#SheenaExists","LOCALS",2)
 THEN
 RESPONSE #100
-SetGlobal("KH#SheenaExists","GLOBAL",3)
+SetGlobal("KH#SheenaExists","LOCALS",3)
 AddXPObject(Myself,1000000)
 END
 
 IF 
 XPGT(Player1,1500000)//
-Global("KH#SheenaExists","GLOBAL",2)
+Global("KH#SheenaExists","LOCALS",2)
 THEN
 RESPONSE #100
-SetGlobal("KH#SheenaExists","GLOBAL",3)
+SetGlobal("KH#SheenaExists","LOCALS",3)
 AddXPObject(Myself,1500000)
 END
 
@@ -1039,20 +1039,20 @@ ReallyForceSpell(Myself,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
 END
 
 IF
-Allegiance(Myself,ENEMY)
-ActionListEmpty()
-OR(5)
-    See(NearestEnemyOf(Myself))
-    See([PC.0.0.CLERIC_ALL])
-    See([PC.0.0.MAGE_ALL])
-    See(WorstAC)
-    See(MostDamagedOf(Myself))
-AreaCheck("AR2102")
-!Allegiance(LastSeenBy(Myself),ENEMY)
+	Allegiance(Myself,ENEMY)
+	ActionListEmpty()
+	OR(5)
+		See(NearestEnemyOf(Myself))
+		See([PC.0.0.CLERIC_ALL])
+		See([PC.0.0.MAGE_ALL])
+		See(WorstAC)
+		See(MostDamagedOf(Myself))
+	AreaCheck("AR2102")
+	!Allegiance(LastSeenBy(Myself),ENEMY)
 THEN
-RESPONSE #100
-EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),15)
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 //SEEK OUT THE BHAALSPAWN

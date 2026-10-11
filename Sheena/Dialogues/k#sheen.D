@@ -1,13 +1,13 @@
 BEGIN SHEENA
 
 
-IF ~True() Global("SPRITE_IS_DEADFIRKRA02","GLOBAL",0)~ THEN BEGIN Meet1Sheena
+IF ~Global("SPRITE_IS_DEADFIRKRA02","GLOBAL",0)~ THEN BEGIN Meet1Sheena
 SAY @1000 
 IF ~~ THEN EXIT
 END  
 
 
-IF ~True() GlobalGT("SPRITE_IS_DEADFIRKRA02","GLOBAL",0)~ THEN BEGIN MeetSheena
+IF ~GlobalGT("SPRITE_IS_DEADFIRKRA02","GLOBAL",0)~ THEN BEGIN MeetSheena
 //IF ~True()~ THEN BEGIN MeetSheena//test
 SAY @1001 
 IF ~~ THEN REPLY @1002  GOTO MeetSheena1
@@ -37,10 +37,15 @@ IF ~~ THEN REPLY @1016  GOTO MeetSheena4
 END  
 
 IF ~~ THEN BEGIN MeetSheena4
-SAY @1017 = @1018 = @1019 = @1020 = @1021 = @1022
-IF ~~ THEN REPLY @1023  GOTO MeetSheena5
-IF ~~ THEN REPLY @1024  GOTO MeetSheena5
-IF ~~ THEN REPLY @1025  GOTO MeetSheena5
+	SAY @1017
+	= @1018
+	= @1019
+	= @1020
+	= @1021
+	= @1022
+		IF ~~ THEN REPLY @1023  GOTO MeetSheena5
+		IF ~~ THEN REPLY @1024  GOTO MeetSheena5
+		IF ~~ THEN REPLY @1025  GOTO MeetSheena5
 END  
 
 IF ~~ THEN BEGIN MeetSheena5
@@ -69,9 +74,9 @@ END
 
 IF ~~ THEN BEGIN MeetSheena8
 SAY @1042 
-IF ~~ THEN REPLY @1043  DO ~ActionOverride(Player1, Swing()) Kill(Myself)~ EXIT
+IF ~~ THEN REPLY @1043  DO ~ActionOverride(Player1,Swing()) Kill(Myself)~ EXIT
 IF ~~ THEN REPLY @1044  GOTO MeetSheena6
-IF ~~ THEN REPLY @1045  DO ~ActionOverride(Player1, Swing()) Kill(Myself)~ EXIT
+IF ~~ THEN REPLY @1045  DO ~ActionOverride(Player1,Swing()) Kill(Myself)~ EXIT
 END  
 
 /*Scrapped - 10-11

@@ -164,7 +164,7 @@
 170 RevealAreaOnMap(S:ResRef*)
 171 GiveGoldForce(I:Amount*)
 172 ChangeTileState(O:Tile*,I:State*Boolean)
-173 AddJournalEntry(I:Entry*,I:Type*JourType)
+173 AddJournalEntry(I:StrRef*,I:Type*JourType)
 174 EquipRanged()
 175 SetLeavePartyDialogFile()
 175 SetLeavePartyDialogueFile()

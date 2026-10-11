@@ -1,15 +1,15 @@
 IF
-True()
+	True()
 THEN
-RESPONSE #90
-CutSceneID(Player1)
-SetGlobal("SHEENAPCAREONE","GLOBAL",1) 
-CreateVisualEffectObject("SPGENHLA","K#SHEENA")//Transformation
-CreateVisualEffectObject("SPGENHLA",Player1)
-SmallWait(5)
-ActionOverride(Player1,ApplySpellRES("K#PCCON",Player1))
-ActionOverride("K#SHEENA",ApplySpellRES("K#SHECON","K#SHEENA"))
+	RESPONSE #90
+		CutSceneId(Player1)
+		SetGlobal("SHEENAPCAREONE","GLOBAL",1) 
+		CreateVisualEffectObject("SPGENHLA","K#SHEENA") //Transformation
+		CreateVisualEffectObject("SPGENHLA",Player1)
+		SmallWait(5)
+		ActionOverride(Player1,ApplySpellRES("K#PCCON",Player1))
+		ActionOverride("K#SHEENA",ApplySpellRES("K#SHECON","K#SHEENA"))
 RESPONSE #10
-CreateVisualEffectObject("SPFDEATH","K#SHEENA")//DEATH EFFECT
-ActionOverride("K#SHEENA",ApplySpellRES("K#KILLS","K#SHEENA"))//KILL SHEENA IN CHUNKS
+		CreateVisualEffectObject("SPFDEATH","K#SHEENA") //DEATH EFFECT
+		ActionOverride("K#SHEENA",ApplySpellRES("K#KILLS","K#SHEENA")) //KILL SHEENA IN CHUNKS
 END

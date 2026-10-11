@@ -5,24 +5,24 @@
 BEGIN BSHEENA
 //////////////////////////////////////////////////////////////////////////////////
 //Talk2: Racism towards half breeds
-IF
-~Global("SheenaTalk","LOCALS",2)
+
+IF ~Global("SheenaTalk","LOCALS",2)
 Global("SheenaMatch","GLOBAL",1)
-GlobalTimerExpired("SheenaTalkTime","GLOBAL")~
-THEN BEGIN SheenaT0
- SAY @2000 
- IF ~Race(Player1,HALFORC)~ THEN REPLY  @2001 GOTO SheenaT1
- IF ~Race(Player1,HALF_ELF)~ THEN REPLY  @2002 GOTO SheenaT2
- IF ~~ THEN REPLY  @2003 GOTO SheenaT3
- IF ~~ THEN REPLY  @2004 GOTO SheenaT4
- IF ~~ THEN REPLY  @2005 GOTO SheenaT5
- END
+GlobalTimerExpired("SheenaTalkTime","GLOBAL")~ THEN BEGIN SheenaT0
+	SAY @2000 
+		IF ~Race(Player1,HALFORC)~ THEN REPLY  @2001 GOTO SheenaT1
+		IF ~Race(Player1,HALF_ELF)~ THEN REPLY  @2002 GOTO SheenaT2
+		IF ~~ THEN REPLY  @2003 GOTO SheenaT3
+		IF ~~ THEN REPLY  @2004 GOTO SheenaT4
+		IF ~~ THEN REPLY  @2005 GOTO SheenaT5
+END
 
 //Orcs
 IF ~~ THEN BEGIN SheenaT1
- SAY @2006 = @2007 
- IF ~Race(Player1,HALFORC)~ THEN REPLY  @2008 GOTO SheenaT1a
- IF ~Race(Player1,HALFORC) GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%) !InParty("Imoen2")~ THEN REPLY  @2009 GOTO SheenaT1b
+	SAY @2006
+	= @2007 
+		IF ~Race(Player1,HALFORC)~ THEN REPLY  @2008 GOTO SheenaT1a
+		IF ~Race(Player1,HALFORC) GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%) !InParty("Imoen2")~ THEN REPLY  @2009 GOTO SheenaT1b
 END
 
 IF ~~ THEN BEGIN SheenaT1a
@@ -120,16 +120,15 @@ IF ~~ THEN BEGIN SheenaT5
  END
 //////////////////////////////////////////////////////////////////////////////////
 //Talk4: Sheenas stepfather and the holy avenger history
-IF
-~Global("SheenaTalk","LOCALS",4)
+
+IF ~Global("SheenaTalk","LOCALS",4)
 Global("SheenaMatch","GLOBAL",1)
-GlobalTimerExpired("SheenaTalkTime","GLOBAL")~
-THEN BEGIN SheenaT20
- SAY @2041 
- IF ~~ THEN REPLY  @2042 GOTO SheenaT21
- IF ~~ THEN REPLY  @2043 GOTO SheenaT21
- IF ~~ THEN REPLY  @2044 GOTO SheenaT21
- IF ~Class(Player1,PALADIN)~ THEN REPLY  @2045 GOTO SheenaT21
+GlobalTimerExpired("SheenaTalkTime","GLOBAL")~ THEN BEGIN SheenaT20
+	SAY @2041 
+		IF ~~ THEN REPLY  @2042 GOTO SheenaT21
+		IF ~~ THEN REPLY  @2043 GOTO SheenaT21
+		IF ~~ THEN REPLY  @2044 GOTO SheenaT21
+		IF ~Class(Player1,PALADIN)~ THEN REPLY  @2045 GOTO SheenaT21
 END
 
 IF ~~ THEN BEGIN SheenaT21
@@ -195,15 +194,14 @@ END
 
 //////////////////////////////////////////////////////////////////////////////////
 //Talk6: Slayer talk
-IF
-~Global("SheenaTalk","LOCALS",6)
+
+IF ~Global("SheenaTalk","LOCALS",6)
 Global("SheenaMatch","GLOBAL",1)
-GlobalTimerExpired("SheenaTalkTime","GLOBAL")~
-THEN BEGIN SheenaT30
- SAY @2073 
- IF ~~ THEN REPLY  @2074 GOTO SheenaT31
- IF ~~ THEN REPLY  @2075 GOTO SheenaT32
- IF ~~ THEN REPLY  @2076 GOTO SheenaT31
+GlobalTimerExpired("SheenaTalkTime","GLOBAL")~ THEN BEGIN SheenaT30
+	SAY @2073 
+		IF ~~ THEN REPLY  @2074 GOTO SheenaT31
+		IF ~~ THEN REPLY  @2075 GOTO SheenaT32
+		IF ~~ THEN REPLY  @2076 GOTO SheenaT31
 END
 
 IF ~~ THEN BEGIN SheenaT31
@@ -236,16 +234,15 @@ END
 //Talk8: Sheena talks about how she despises the half dragon. A chance to either 
 //see the half dragon more often or extremely rarely during the game.
 //HAS TO HAPPEN BEFORE THE SLAYER OR NOT AT ALL
-IF
-~Global("SheenaTalk","LOCALS",8)
+
+IF ~Global("SheenaTalk","LOCALS",8)
 Global("SheenaMatch","GLOBAL",1)
-GlobalTimerExpired("SheenaTalkTime","GLOBAL")~
-THEN BEGIN SheenaT40
- SAY @2085 
- IF ~~ THEN REPLY  @2086 GOTO SheenaT41
- IF ~~ THEN REPLY  @2087 GOTO SheenaT42
- IF ~~ THEN REPLY  @2088 GOTO SheenaT43
- IF ~Gender(Player1,MALE)~ THEN REPLY  @2089 GOTO SheenaT44
+GlobalTimerExpired("SheenaTalkTime","GLOBAL")~ THEN BEGIN SheenaT40
+	SAY @2085 
+		IF ~~ THEN REPLY  @2086 GOTO SheenaT41
+		IF ~~ THEN REPLY  @2087 GOTO SheenaT42
+		IF ~~ THEN REPLY  @2088 GOTO SheenaT43
+		IF ~Gender(Player1,MALE)~ THEN REPLY  @2089 GOTO SheenaT44
 END
 
 IF ~~ THEN BEGIN SheenaT41
@@ -299,23 +296,26 @@ IF ~~ THEN BEGIN SheenaT47
 END
 //////////////////////////////////////////////////////////////////////////////////
 //Talk10: the smithy part II - short tale
-IF
-~Global("SheenaTalk","LOCALS",10)
+
+IF ~Global("SheenaTalk","LOCALS",10)
 Global("SheenaMatch","GLOBAL",1)
-GlobalTimerExpired("SheenaTalkTime","GLOBAL")~
-THEN BEGIN SheenaT50
- SAY @2109 
- IF ~~ THEN REPLY  @2110 GOTO SheenaT51
- IF ~Class(Player1,FIGHTER_ALL)~ THEN REPLY  @2111 GOTO SheenaT52
- IF ~Class(Player1,MAGE_ALL)~ THEN REPLY  @2111 GOTO SheenaT53
-IF ~Class(Player1,DRUID_ALL)~ THEN REPLY  @2111 GOTO SheenaT54
-IF ~Class(Player1,THIEF_ALL)~ THEN REPLY  @2111 GOTO SheenaT55
-IF ~Class(Player1,CLERIC_ALL)~ THEN REPLY  @2111 GOTO SheenaT56
+GlobalTimerExpired("SheenaTalkTime","GLOBAL")~ THEN BEGIN SheenaT50
+	SAY @2109 
+		IF ~~ THEN REPLY  @2110 GOTO SheenaT51
+		IF ~Class(Player1,FIGHTER_ALL)~ THEN REPLY  @2111 GOTO SheenaT52
+		IF ~Class(Player1,MAGE_ALL)~ THEN REPLY  @2111 GOTO SheenaT53
+		IF ~Class(Player1,DRUID_ALL)~ THEN REPLY  @2111 GOTO SheenaT54
+		IF ~Class(Player1,THIEF_ALL)~ THEN REPLY  @2111 GOTO SheenaT55
+		IF ~Class(Player1,CLERIC_ALL)~ THEN REPLY  @2111 GOTO SheenaT56
 END
 
 IF ~~ THEN BEGIN SheenaT51
- SAY @2112 = @2113 = @2114 = @2115 = @2116
- IF ~~ THEN EXIT
+	SAY @2112
+	= @2113
+	= @2114
+	= @2115
+	= @2116
+		IF ~~ THEN EXIT
 END
 
 IF ~~ THEN BEGIN SheenaT52
@@ -344,11 +344,10 @@ IF ~~ THEN BEGIN SheenaT56
 END
 
 //Talk12: Sheena's first lengthy tale
-IF
-~Global("SheenaTalk","LOCALS",12)
+
+IF ~Global("SheenaTalk","LOCALS",12)
 Global("SheenaMatch","GLOBAL",1)
-GlobalTimerExpired("SheenaTalkTime","GLOBAL")~
-THEN BEGIN SheenaT60
+GlobalTimerExpired("SheenaTalkTime","GLOBAL")~ THEN BEGIN SheenaT60
  SAY @2122 
  IF ~~ THEN REPLY  @2123 GOTO SheenaT61
  IF ~~ THEN REPLY  @2124 GOTO SheenaT61
@@ -377,9 +376,11 @@ END
 
 //Long and will require some crosschecking
 IF ~~ THEN BEGIN SheenaT64
- SAY @2135 = @2136 = @2137 = @2138 = @2139 = @2140 = @2141 = @2142 = @2143 = @2144 = @2145 = @2146 = @2147 = @2148  = @2149 = @2150 = @2151 = @2152 
- IF ~~ THEN REPLY  @2153 GOTO SheenaT65
- IF ~~ THEN REPLY  @2154 GOTO SheenaT65
+	SAY @2135 = @2136 = @2137 = @2138 = @2139
+= @2140 = @2141 = @2142 = @2143 = @2144 = @2145 = @2146 = @2147 = @2148  = @2149
+= @2150 = @2151 = @2152 
+		IF ~~ THEN REPLY  @2153 GOTO SheenaT65
+		IF ~~ THEN REPLY  @2154 GOTO SheenaT65
 END
 
 IF ~~ THEN BEGIN SheenaT65
@@ -388,16 +389,15 @@ IF ~~ THEN BEGIN SheenaT65
 END
 
 //Talk14: Sheena's next tale
-IF
-~Global("SheenaTalk","LOCALS",14)
+
+IF ~Global("SheenaTalk","LOCALS",14)
 Global("SheenaMatch","GLOBAL",1)
-GlobalTimerExpired("SheenaTalkTime","GLOBAL")~
-THEN BEGIN SheenaT70
- SAY @2156 
- IF ~~ THEN REPLY  @2157 GOTO SheenaT71
- IF ~~ THEN REPLY  @2158 GOTO SheenaT72
-IF ~Gender(Player1,MALE)~ THEN REPLY  @2159 GOTO SheenaT73
-IF ~Gender(Player1,FEMALE)~ THEN REPLY  @2160 GOTO SheenaT73
+GlobalTimerExpired("SheenaTalkTime","GLOBAL")~ THEN BEGIN SheenaT70
+	SAY @2156 
+		IF ~~ THEN REPLY  @2157 GOTO SheenaT71
+		IF ~~ THEN REPLY  @2158 GOTO SheenaT72
+		IF ~Gender(Player1,MALE)~ THEN REPLY  @2159 GOTO SheenaT73
+		IF ~Gender(Player1,FEMALE)~ THEN REPLY  @2160 GOTO SheenaT73
 END
 
 IF ~~ THEN BEGIN SheenaT71
@@ -433,14 +433,13 @@ IF ~~ THEN BEGIN SheenaT76
 END
 
 //Talk:16 Cult of the Dragon and Vinamar (quest to follow in Chapter 6)
-IF
-~Global("SheenaTalk","LOCALS",16)
+
+IF ~Global("SheenaTalk","LOCALS",16)
 Global("SheenaMatch","GLOBAL",1)
-GlobalTimerExpired("SheenaTalkTime","GLOBAL")~
-THEN BEGIN SheenaT80
- SAY @2173 
- IF ~~ THEN REPLY  @2174 GOTO SheenaT81
- IF ~~ THEN REPLY  @2175 GOTO SheenaT82
+GlobalTimerExpired("SheenaTalkTime","GLOBAL")~ THEN BEGIN SheenaT80
+	SAY @2173 
+		IF ~~ THEN REPLY  @2174 GOTO SheenaT81
+		IF ~~ THEN REPLY  @2175 GOTO SheenaT82
 END
 
 IF ~~ THEN BEGIN SheenaT81
@@ -493,11 +492,10 @@ IF ~~ THEN BEGIN SheenaT89
 END
 
 //Talk:18 - Talk about Baldur
-IF
-~Global("SheenaTalk","LOCALS",18)
+
+IF ~Global("SheenaTalk","LOCALS",18)
 Global("SheenaMatch","GLOBAL",1)
-GlobalTimerExpired("SheenaTalkTime","GLOBAL")~
-THEN BEGIN SheenaT90
+GlobalTimerExpired("SheenaTalkTime","GLOBAL")~ THEN BEGIN SheenaT90
  SAY @2203 
  IF ~~ THEN REPLY  @2204 GOTO SheenaT91
  IF ~~ THEN REPLY  @2205 GOTO SheenaT92
@@ -558,22 +556,21 @@ IF ~~ THEN BEGIN SheenaT97
 END
 
 //Talk:20 - The gods and the story of Tiamat
-IF
-~Global("SheenaTalk","LOCALS",20)
+
+IF ~Global("SheenaTalk","LOCALS",20)
 Global("SheenaMatch","GLOBAL",1)
-GlobalTimerExpired("SheenaTalkTime","GLOBAL")~
-THEN BEGIN SheenaT100
- SAY @2228 
- IF ~~ THEN REPLY  @2229 GOTO SheenaT101
- IF ~Class(Player1,MAGE_ALL)~ THEN REPLY  @2230 GOTO SheenaT102
- IF ~Race(Player1,GNOME)~ THEN REPLY  @2231 GOTO SheenaT103
- IF ~Race(Player1,DWARF)~ THEN REPLY  @2232 GOTO SheenaT104
- IF ~Class(Player1,PALADIN)~ THEN REPLY  @2233 GOTO SheenaT105
- IF ~Race(Player1,HUMAN)~ THEN REPLY  @2234 GOTO SheenaT106
- IF ~Class(Player1,THIEF_ALL)~ THEN REPLY  @2235 GOTO SheenaT107
- IF ~Class(Player1,CLERIC) Alignment(Player1,MASK_EVIL)~ THEN REPLY  @2236 GOTO SheenaT108
-//IF ~Class(Player1,CLERIC) Alignment(Player1,MASK_GOOD)~ THEN REPLY  ~I worship Tempus.~ GOTO SheenaT109
-IF ~Race(Player1,ELF)~ THEN REPLY  @2237 GOTO SheenaT109a
+GlobalTimerExpired("SheenaTalkTime","GLOBAL")~ THEN BEGIN SheenaT100
+	SAY @2228 
+		IF ~~ THEN REPLY  @2229 GOTO SheenaT101
+		IF ~Class(Player1,MAGE_ALL)~ THEN REPLY  @2230 GOTO SheenaT102
+		IF ~Race(Player1,GNOME)~ THEN REPLY  @2231 GOTO SheenaT103
+		IF ~Race(Player1,DWARF)~ THEN REPLY  @2232 GOTO SheenaT104
+		IF ~Class(Player1,PALADIN)~ THEN REPLY  @2233 GOTO SheenaT105
+		IF ~Race(Player1,HUMAN)~ THEN REPLY  @2234 GOTO SheenaT106
+		IF ~Class(Player1,THIEF_ALL)~ THEN REPLY  @2235 GOTO SheenaT107
+		IF ~Class(Player1,CLERIC) Alignment(Player1,MASK_EVIL)~ THEN REPLY  @2236 GOTO SheenaT108
+		//IF ~Class(Player1,CLERIC) Alignment(Player1,MASK_GOOD)~ THEN REPLY  ~I worship Tempus.~ GOTO SheenaT109
+		IF ~Race(Player1,ELF)~ THEN REPLY  @2237 GOTO SheenaT109a
 END
 
 IF ~~ THEN BEGIN SheenaT101
@@ -634,9 +631,10 @@ IF ~~ THEN REPLY  @2255 EXIT
 END
 
 IF ~~ THEN BEGIN SheenaT111
- SAY @2256 = @2257 = @2258 = @2259 = @2260 = @2261 = @2262 = @2263 = @2264 = @2265 = @2266 = @2267
- IF ~~ THEN REPLY @2268 GOTO SheenaT112
- IF ~~ THEN REPLY @2269 GOTO SheenaT113
+	SAY @2256 = @2257 = @2258 = @2259
+= @2260 = @2261 = @2262 = @2263 = @2264 = @2265 = @2266 = @2267
+		IF ~~ THEN REPLY @2268 GOTO SheenaT112
+		IF ~~ THEN REPLY @2269 GOTO SheenaT113
 END
 
 IF ~~ THEN BEGIN SheenaT112
@@ -760,11 +758,10 @@ IF ~~ THEN BEGIN SheenaLT4d
 END
 
 //Love Talk : 4 - THE LOVE DECLARATION 
-IF
-~Global("SheenaLoveTalk","LOCALS",4)
+
+IF ~Global("SheenaLoveTalk","LOCALS",4)
 Global("SheenaMatch","GLOBAL",1)
-GlobalTimerExpired("SheenaLoveTalkTime","GLOBAL")~
-THEN BEGIN SheenaLT40
+GlobalTimerExpired("SheenaLoveTalkTime","GLOBAL")~ THEN BEGIN SheenaLT40
  SAY @2324 
   IF ~~ THEN REPLY @2325 GOTO SheenaLT41
   IF ~~ THEN REPLY @2326 GOTO SheenaLT41
@@ -869,11 +866,9 @@ END
 */
 
 //SHEENA HAS DOUBTS ABOUT THE RELATIONSHIP
-IF
-~Global("SheenaLoveTalk","LOCALS",6)
+IF ~Global("SheenaLoveTalk","LOCALS",6)
 Global("SheenaMatch","GLOBAL",1)
-GlobalTimerExpired("SheenaLoveTalkTime","GLOBAL")~
-THEN BEGIN SheenaLT20
+GlobalTimerExpired("SheenaLoveTalkTime","GLOBAL")~ THEN BEGIN SheenaLT20
  SAY @2348 
   IF ~~ THEN REPLY  @2349 GOTO SheenaLT21
   IF ~~ THEN REPLY  @2350 GOTO SheenaLT21
@@ -952,11 +947,10 @@ END
 //Love Talk : 8 - SHEENA GIVES HER HEART TO CHARNAME BUT LITERALLY
 //TYING UP CHARNAME FOR LIFE! IT MAKES A LOT OF SENSE AFTER lt4 - she wanted unconditional love
 //IT MAY SEEM EARLY BUT A FEW DIALOGS IN BETWEEN THIS ONE COULD BE ADDED LATER, ESPECIALLY 6
-IF
-~Global("SheenaLoveTalk","LOCALS",8)
+
+IF ~Global("SheenaLoveTalk","LOCALS",8)
 Global("SheenaMatch","GLOBAL",1)
-GlobalTimerExpired("SheenaLoveTalkTime","GLOBAL")~
-THEN BEGIN SheenaLT30
+GlobalTimerExpired("SheenaLoveTalkTime","GLOBAL")~ THEN BEGIN SheenaLT30
  SAY @2380 = @2381 = @2382 
   IF ~~ THEN REPLY  @2383 GOTO SheenaLT31a
   IF ~~ THEN REPLY  @2384 GOTO SheenaLT31e
@@ -1047,10 +1041,9 @@ END
 //Wheather(RAIN) is used in the script but there is a 9 second delay!
 //StartRainNow() does not work
 //
-IF
-~Global("SheenaLoveTalk","LOCALS",10)
-Global("SheenaMatch","GLOBAL",1)~
-THEN BEGIN SheenaLT60
+
+IF ~Global("SheenaLoveTalk","LOCALS",10)
+Global("SheenaMatch","GLOBAL",1)~ THEN BEGIN SheenaLT60
  SAY @2416 
   IF ~~ THEN REPLY  @2417 DO ~ApplySpell(Myself,WIZARD_BURNING_HANDS)~ GOTO SheenaLT61a
   IF ~~ THEN REPLY  @2418 GOTO SheenaLT61b
@@ -1075,14 +1068,11 @@ END
 
 IF ~~ THEN BEGIN SheenaLT61d
  SAY @2426
-= @2427 = 
-@2428
-= 
-@2429
-= 
-@2430
-= 
-@2431
+= @2427
+= @2428
+= @2429
+= @2430
+= @2431
  IF ~~ THEN REPLY @2432 GOTO SheenaLT62
  IF ~~ THEN REPLY @2433 GOTO SheenaLT63
 END
@@ -1106,10 +1096,8 @@ END
 
 //Love Talk : 12 - Nightly exertions = late rising
 
-IF
-~Global("SheenaLoveTalk","LOCALS",12)
-Global("SheenaMatch","GLOBAL",1)~
-THEN BEGIN SheenaLT70
+IF ~Global("SheenaLoveTalk","LOCALS",12)
+Global("SheenaMatch","GLOBAL",1)~ THEN BEGIN SheenaLT70
  SAY @2438 
   IF ~~ THEN REPLY  @2439 GOTO SheenaLT71
   IF ~~ THEN REPLY  @2440 GOTO SheenaLT72
@@ -1154,11 +1142,10 @@ END
 
 //Talk : 14 - LORD FIRKRAAG BACK ON THE SCENE
 //WILL SHEENA BECOME A FULL GROWN DRAGON OR NOT?
-IF
-~Global("SheenaLoveTalk","LOCALS",14)
+
+IF ~Global("SheenaLoveTalk","LOCALS",14)
 Global("SheenaMatch","GLOBAL",1)
-GlobalTimerExpired("SheenaLoveTalkTime","GLOBAL")~
-THEN BEGIN SheenaLT80
+GlobalTimerExpired("SheenaLoveTalkTime","GLOBAL")~ THEN BEGIN SheenaLT80
  SAY @2455 
 IF ~~ THEN REPLY  @2456 GOTO SheenaLT82
   IF ~~ THEN REPLY  @2457 GOTO SheenaLT81
@@ -1224,10 +1211,10 @@ IF ~~ THEN BEGIN SheenaLT87
 END
 
 IF ~~ THEN BEGIN SheenaLT88
- SAY @2481
- IF ~Global("SLAYER1","GLOBAL",1)~ THEN REPLY  @2482 GOTO SheenaLT88a
- IF ~GlobalLT("SLAYER1","GLOBAL",1)~ THEN REPLY  @2483 GOTO SheenaLT88a
- IF ~~ THEN REPLY  @2484 GOTO SheenaLT88b
+	SAY @2481
+		IF ~Global("SLAYER1","GLOBAL",1)~ THEN REPLY  @2482 GOTO SheenaLT88a
+		IF ~GlobalLT("SLAYER1","GLOBAL",1)~ THEN REPLY  @2483 GOTO SheenaLT88a
+		IF ~~ THEN REPLY  @2484 GOTO SheenaLT88b
 END
 
 IF ~~ THEN BEGIN SheenaLT88a
@@ -1273,7 +1260,12 @@ EXIT
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 //MAZZY - INFERIORITY COMPLEX? Nay!
-CHAIN IF ~Global("SheenaTalkMazzy","GLOBAL",2)~ THEN BSHEENA SheenaTalkMazzy2
+CHAIN IF ~Global("SheenaTalkMazzy","GLOBAL",2)
+CombatCounter(0)
+InParty("Mazzy")
+!StateCheck("Mazzy",CD_STATE_NOTVALID)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkMazzy2
 @2487 DO ~SetGlobal("SheenaTalkMazzy","GLOBAL",3)~ 
 == BMAZZY
 @2488 
@@ -1292,13 +1284,23 @@ CHAIN IF ~Global("SheenaTalkMazzy","GLOBAL",2)~ THEN BSHEENA SheenaTalkMazzy2
 EXIT
 
 APPEND BMAZZY
-IF WEIGHT #-99 ~Global("SheenaTalkMazzy","GLOBAL",1)~ THEN BEGIN SheenaTalkMazzy1
+IF WEIGHT #-99 ~Global("SheenaTalkMazzy","GLOBAL",1)
+CombatCounter(0)
+InParty("K#SHEENA")
+!StateCheck("K#SHEENA",CD_STATE_NOTVALID)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BEGIN SheenaTalkMazzy1
 SAY @2495 
 IF ~~ THEN DO ~SetGlobal("SheenaTalkMazzy","GLOBAL",2)~ EXTERN BSheena SheenaTalkMazzy2
 END
 END
 
-CHAIN IF WEIGHT #-98 ~Global("SheenaTalkMazzy","GLOBAL",4)~ THEN BSHEENA SheenaTalkMazzy3
+CHAIN IF WEIGHT #-98 ~Global("SheenaTalkMazzy","GLOBAL",4)
+CombatCounter(0)
+InParty("Mazzy")
+!StateCheck("Mazzy",CD_STATE_NOTVALID)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkMazzy3
 @2496  DO ~SetGlobal("SheenaTalkMazzy","GLOBAL",5)~ 
 == BMAZZY
 @2497 
@@ -1312,7 +1314,12 @@ CHAIN IF WEIGHT #-98 ~Global("SheenaTalkMazzy","GLOBAL",4)~ THEN BSHEENA SheenaT
 @2501 
 EXIT
 
-CHAIN IF WEIGHT #-97 ~Global("SheenaTalkMazzy","GLOBAL",6)~ THEN BSHEENA SheenaTalkMazzy4
+CHAIN IF WEIGHT #-97 ~Global("SheenaTalkMazzy","GLOBAL",6)
+CombatCounter(0)
+InParty("Mazzy")
+!StateCheck("Mazzy",CD_STATE_NOTVALID)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkMazzy4
 @2502  DO ~SetGlobal("SheenaTalkMazzy","GLOBAL",7)~ 
 == BMAZZY
 @2503 
@@ -1342,7 +1349,12 @@ EXIT
 
 //MAZZY AND SHEENA DURING THE LOVETALKS
 //LTalk: 1 - First lovetalk if Mazzy in the party
-CHAIN IF WEIGHT #-96 ~Global("SheenaTalkMazzy","GLOBAL",8)~ THEN BSHEENA SheenaLTalkMazzy1
+CHAIN IF WEIGHT #-96 ~Global("SheenaTalkMazzy","GLOBAL",8)
+CombatCounter(0)
+InParty("Mazzy")
+!StateCheck("Mazzy",CD_STATE_NOTVALID)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaLTalkMazzy1
 @2515  DO ~SetGlobal("SheenaTalkMazzy","GLOBAL",9)~ 
 == BMAZZY
 @2516 
@@ -1369,9 +1381,12 @@ EXIT
 ////////////////////////////////////////////////////////////////////////////////
 //ANOMEN
 CHAIN IF WEIGHT #-99  ~Global("AnomenTalkSheena","GLOBAL",1)
-Global("AnomenIsKnight","GLOBAL",0) 
+Global("AnomenIsKnight","GLOBAL",0)
 CombatCounter(0)
-~ THEN BANOMEN AnomenTalkSheena1
+InParty("K#SHEENA")
+!StateCheck("K#SHEENA",CD_STATE_NOTVALID)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BANOMEN AnomenTalkSheena1
 @2529  DO ~SetGlobal("AnomenTalkSheena","GLOBAL",2)~ 
 == BSHEENA
 @2530
@@ -1386,7 +1401,10 @@ EXIT
 /* should happen as soon as knight */
 CHAIN IF ~Global("AnomenTalkSheena","GLOBAL",3)
 CombatCounter(0)
-~ THEN BSHEENA AnomenTalkSheena2
+InParty("Anomen")
+!StateCheck("Anomen",CD_STATE_NOTVALID)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA AnomenTalkSheena2
 @2534  DO ~SetGlobal("AnomenTalkSheena","GLOBAL",4)~ 
 == BANOMEN
 @2535
@@ -1413,7 +1431,12 @@ EXIT
 ////////////////////////////////////////////////////////////////////////////////
 //NALIA & NOBILITY - NEEDS TO BE JUST AFTER NALIA JOINS OR RIGHT IN THE DUNGEON AFTER FREEING HER
 //HAS SEEN HER HUMAN FORM ONLY
-CHAIN IF ~Global("SheenaTalkNalia","GLOBAL",2)~ THEN BSHEENA SheenaTalkNalia2
+CHAIN IF ~Global("SheenaTalkNalia","GLOBAL",2)
+CombatCounter(0)
+InParty("Nalia")
+!StateCheck("Nalia",CD_STATE_NOTVALID)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkNalia2
 @2545 DO ~SetGlobal("SheenaTalkNalia","GLOBAL",3)~ 
 == BNALIA
 @2546
@@ -1432,7 +1455,12 @@ CHAIN IF ~Global("SheenaTalkNalia","GLOBAL",2)~ THEN BSHEENA SheenaTalkNalia2
 EXIT
 
 APPEND BNALIA
-IF ~Global("SheenaTalkNalia","GLOBAL",1)~ THEN BEGIN SheenaTalkNalia1
+IF ~Global("SheenaTalkNalia","GLOBAL",1)
+CombatCounter(0)
+InParty("K#SHEENA")
+!StateCheck("K#SHEENA",CD_STATE_NOTVALID)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BEGIN SheenaTalkNalia1
 SAY @2554 
 IF ~~ THEN DO ~SetGlobal("SheenaTalkNalia","GLOBAL",2)~ EXTERN BSheena SheenaTalkNalia2
 END
@@ -1440,14 +1468,19 @@ END
 
 ////////////////////////////////////////////////////////////////////////////////
 //CERND
-CHAIN IF ~Global("CerndTalkSheena","GLOBAL",1)~ THEN BSHEENA CerndTalkSheena1
+CHAIN IF ~Global("CerndTalkSheena","GLOBAL",1)
+CombatCounter(0)
+InParty("Cernd")
+!StateCheck("Cernd",CD_STATE_NOTVALID)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA CerndTalkSheena1
 @2555  DO ~SetGlobal("CerndTalkSheena","GLOBAL",2)~ 
 == BCERND
 @2556
 == BSHEENA
 @2557
 == BCERND
-@2558//Original BG2 with Valygar
+@2558 //Original BG2 with Valygar
 == BSHEENA
 @2559
 == BCERND
@@ -1458,7 +1491,12 @@ EXIT
 
 ////////////////////////////////////////////////////////////////////////////////
 //KORGAN - KEEPS ON GETTING HIT BY SHEENA IN THE UNDERDARK
-CHAIN IF ~Global("SheenaTalkKorgan","GLOBAL",2)~ THEN BSHEENA SheenaTalkKorgan2
+CHAIN IF ~Global("SheenaTalkKorgan","GLOBAL",2)
+CombatCounter(0)
+InParty("Korgan")
+!StateCheck("Cernd",CD_STATE_NOTVALID)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkKorgan2
 @2563 DO ~SetGlobal("SheenaTalkKorgan","GLOBAL",3)~ 
 == BKORGAN
 @2564 
@@ -1467,19 +1505,26 @@ CHAIN IF ~Global("SheenaTalkKorgan","GLOBAL",2)~ THEN BSHEENA SheenaTalkKorgan2
 EXIT
 
 APPEND BKORGAN
-IF WEIGHT #-47 ~InParty("K#Sheena") 
+IF WEIGHT #-47 ~ Global("SheenaTalkKorgan","GLOBAL",1)
+Global("SheenRHD","GLOBAL",1)
+CombatCounter(0)
+InParty("K#Sheena") 
 See("K#Sheena")
 InParty(Myself)
-!StateCheck("K#Sheena",STATE_SLEEPING)  
-Global("SheenaTalkKorgan","GLOBAL",1)
-Global("SheenRHD","GLOBAL",1)~ THEN BEGIN SheenaTalkKorgan1
+!StateCheck(Myself,CD_STATE_NOTVALID)
+!StateCheck("K#Sheena",CD_STATE_NOTVALID)~ THEN BEGIN SheenaTalkKorgan1
 SAY @2566 
 IF ~~ THEN DO ~SetGlobal("SheenaTalkKorgan","GLOBAL",2)~ EXTERN BSheena SheenaTalkKorgan2
 END
 END
 
 
-CHAIN IF ~Global("SheenaTalkKorgan","GLOBAL",5)~ THEN BSHEENA SheenaTalkKorgan4
+CHAIN IF ~Global("SheenaTalkKorgan","GLOBAL",5)
+CombatCounter(0)
+InParty("Korgan")
+!StateCheck("Cernd",CD_STATE_NOTVALID)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkKorgan4
 @2567 DO ~SetGlobal("SheenaTalkKorgan","GLOBAL",6)~ 
 == BKORGAN
 @2568
@@ -1489,12 +1534,14 @@ EXIT
 
 
 APPEND BKORGAN
-IF WEIGHT #-46 ~InParty("K#Sheena") 
+IF WEIGHT #-46 ~  Global("SheenaTalkKorgan","GLOBAL",4)
+Global("SheenRHD","GLOBAL",1)
+CombatCounter(0)
+InParty("K#Sheena") 
 See("K#Sheena")
+!StateCheck("K#Sheena",CD_STATE_NOTVALID)
 InParty(Myself)
-!StateCheck("K#Sheena",STATE_SLEEPING)  
-Global("SheenaTalkKorgan","GLOBAL",4)
-Global("SheenRHD","GLOBAL",1)~ THEN BEGIN SheenaTalkKorgan3
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BEGIN SheenaTalkKorgan3
 SAY @2570 
 IF ~~ THEN DO ~SetGlobal("SheenaTalkKorgan","GLOBAL",5)~ EXTERN BSheena SheenaTalkKorgan4
 END
@@ -1502,12 +1549,14 @@ END
 
 //AERIE - WINGS
 CHAIN
-IF ~InParty("Aerie")
-See("Aerie")
-!StateCheck("Aerie",STATE_SLEEPING)
-Global("K#SheenaAerie","GLOBAL",1)
+IF ~Global("K#SheenaAerie","GLOBAL",1)
 Global("SheenRHD","GLOBAL",1)
-CombatCounter(0)~ THEN BSHEENA K#SheenaAerie1
+CombatCounter(0)
+InParty("Aerie")
+!StateCheck("Aerie",CD_STATE_NOTVALID)
+See("Aerie")
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA K#SheenaAerie1
 @2571 
 DO ~SetGlobal("K#SheenaAerie","GLOBAL",2)~
 == BAERIE
@@ -1530,11 +1579,13 @@ EXIT
 
 //TALK ABOUT THE AVARIEL AND WHETHER SHEENA COULD VISIT
 CHAIN
-IF ~InParty("Aerie")
+IF ~Global("K#SheenaAerie","GLOBAL",2)
+CombatCounter(0)
+InParty("Aerie")
+!StateCheck("Aerie",CD_STATE_NOTVALID)
 See("Aerie")
-!StateCheck("Aerie",STATE_SLEEPING)
-Global("K#SheenaAerie","GLOBAL",2)
-CombatCounter(0)~ THEN BSHEENA K#SheenaAerie1
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA K#SheenaAerie1
 @2578 
 DO ~SetGlobal("K#SheenaAerie","GLOBAL",3)~
 == BAERIE
@@ -1557,11 +1608,13 @@ EXIT
 
 ////////////////////////////////////////////////////////////////////////////////
 //VICONIA - KEEPING DISTANCE
-CHAIN IF ~InParty("Viconia")
+CHAIN IF ~Global("ViconiaTalkSheena","GLOBAL",0)
+CombatCounter(0)
+InParty("Viconia")
+!StateCheck("Viconia",CD_STATE_NOTVALID)
 See("Viconia")
-!StateCheck("Viconia",STATE_SLEEPING)
-Global("ViconiaTalkSheena","GLOBAL",0)
-CombatCounter(0)~ THEN BSHEENA SheenaTalkViconia1
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkViconia1
 @2587  DO ~SetGlobal("ViconiaTalkSheena","GLOBAL",1)~ 
 == BVICONI
 @2588
@@ -1572,11 +1625,13 @@ CombatCounter(0)~ THEN BSHEENA SheenaTalkViconia1
 EXIT
 
 //Shahr or Shar both names refer to the same goddess
-CHAIN IF ~InParty("Viconia")
+CHAIN IF ~Global("ViconiaTalkSheena","GLOBAL",1)
+CombatCounter(0)
+InParty("Viconia")
+!StateCheck("Viconia",CD_STATE_NOTVALID)
 See("Viconia")
-!StateCheck("Viconia",STATE_SLEEPING)
-Global("ViconiaTalkSheena","GLOBAL",1)
-CombatCounter(0)~ THEN BSHEENA SheenaTalkViconia2
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkViconia2
 @2591  DO ~SetGlobal("ViconiaTalkSheena","GLOBAL",2)~ 
 == BVICONI
 @2592
@@ -1597,7 +1652,13 @@ CombatCounter(0)~ THEN BSHEENA SheenaTalkViconia2
 EXIT
 
 //SHAR NEXT
-CHAIN IF ~Global("ViconiaTalkSheena","GLOBAL",3)~ THEN BSHEENA SheenaTalkViconia4
+CHAIN IF ~Global("ViconiaTalkSheena","GLOBAL",3)
+CombatCounter(0)
+InParty("Viconia")
+!StateCheck("Viconia",CD_STATE_NOTVALID)
+See("Viconia")
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkViconia4
 @2600 DO ~SetGlobal("ViconiaTalkSheena","GLOBAL",4)~ 
 == BVICONI
 @2601
@@ -1610,18 +1671,26 @@ CHAIN IF ~Global("ViconiaTalkSheena","GLOBAL",3)~ THEN BSHEENA SheenaTalkViconia
 EXIT
 
 APPEND BVICONI
-IF ~InParty("K#Sheena") 
+IF ~Global("ViconiaTalkSheena","GLOBAL",2)
+InParty("K#Sheena") 
 See("K#Sheena")
-!StateCheck("K#Sheena",STATE_SLEEPING)  
-Global("ViconiaTalkSheena","GLOBAL",2)
-CombatCounter(0)~ THEN BEGIN SheenaTalkViconia3
+!StateCheck("K#Sheena",CD_STATE_NOTVALID)  
+CombatCounter(0)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BEGIN SheenaTalkViconia3
 SAY @2605 
 IF ~~ THEN DO ~SetGlobal("ViconiaTalkSheena","GLOBAL",3)~ EXTERN BSheena SheenaTalkViconia4
 END
 END
 ////////////////////////////////////////////////////////////////////////////////
 //JAN - 
-CHAIN IF ~Global("SheenaTalkJan","GLOBAL",1)~ THEN BSHEENA SheenaTalkJan2
+CHAIN IF ~Global("SheenaTalkJan","GLOBAL",1)
+CombatCounter(0)
+InParty("Viconia")
+!StateCheck("Viconia",CD_STATE_NOTVALID)
+See("Viconia")
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkJan2
 @2606 DO ~SetGlobal("SheenaTalkJan","GLOBAL",2)~ 
 == BJAN
 @2607 
@@ -1641,26 +1710,29 @@ EXIT
 
 //APPEND TO START OTHER CHARACTERS TRIGGING THE BANTER
 APPEND BJAN
-IF ~InParty("K#Sheena") 
-See("K#Sheena")
-InParty(Myself)
-!StateCheck("K#Sheena",STATE_SLEEPING)  
-Global("SheenaTalkJan","GLOBAL",0)
+IF ~Global("SheenaTalkJan","GLOBAL",0)
 Global("SheenRHD","GLOBAL",1)
-CombatCounter(0)~ THEN BEGIN SheenaTalkJan1
+CombatCounter(0)
+InParty("K#Sheena") 
+See("K#Sheena")
+!StateCheck("K#Sheena",CD_STATE_NOTVALID)  
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BEGIN SheenaTalkJan1
 SAY @2614 
 IF ~~ THEN DO ~SetGlobal("SheenaTalkJan","GLOBAL",1)~ EXTERN BSheena SheenaTalkJan2
 END
 END
 
 
-CHAIN IF ~InParty("K#Sheena") 
+CHAIN IF ~Global("SheenaTalkJan1","GLOBAL",0)
+Global("BJan3","LOCALS",1)
+InParty("K#Sheena") 
 See("K#Sheena")
-!StateCheck("K#Sheena",STATE_SLEEPING)  
+!StateCheck("K#Sheena",CD_STATE_NOTVALID)  
 See("Valygar")
 InParty("Valygar")
-Global("SheenaTalkJan1","GLOBAL",0)
-Global("BJan3","LOCALS",1)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)
 CombatCounter(0)~ THEN BJAN SheenaTalkJan3
 @2615  DO ~SetGlobal("SheenaTalkJan1","GLOBAL",1)~ 
 == BVALYGA
@@ -1674,11 +1746,13 @@ CombatCounter(0)~ THEN BJAN SheenaTalkJan3
 EXIT
 ////////////////////////////////////////////////////////////////////////////////
 //MINSC - BOO ON A MISSION TO THE MOON
-CHAIN IF ~InParty("Minsc")
+CHAIN IF ~Global("MinscTalkSheena","GLOBAL",0)
+CombatCounter(0)
+InParty("Minsc")
+!StateCheck("Minsc",CD_STATE_NOTVALID)
 See("Minsc")
-!StateCheck("Minsc",STATE_SLEEPING)
-Global("MinscTalkSheena","GLOBAL",0)
-CombatCounter(0)~ THEN BSHEENA SheenaTalkMinsc1
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkMinsc1
 @2620  DO ~SetGlobal("MinscTalkSheena","GLOBAL",1)~ 
 == BMINSC
 @2621
@@ -1692,10 +1766,13 @@ CombatCounter(0)~ THEN BSHEENA SheenaTalkMinsc1
 EXIT
 
 /*Should be scrapped in a final release but a good joke*/
-CHAIN IF ~InParty("Minsc")
+CHAIN IF ~Global("MinscTalkSheena","GLOBAL",1)
+CombatCounter(0)
+InParty("Minsc")
+!StateCheck("Minsc",CD_STATE_NOTVALID)
 See("Minsc")
-!StateCheck("Minsc",STATE_SLEEPING)
-Global("MinscTalkSheena","GLOBAL",1)~ THEN BSHEENA SheenaTalkMinsc1
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkMinsc1
 @2626  DO ~SetGlobal("MinscTalkSheena","GLOBAL",2)~ 
 == BMINSC
 @2627
@@ -1711,10 +1788,13 @@ EXIT
 
 ////////////////////////////////////////////////////////////////////////////////
 //KELDORN - PALADIN MEANS RELUCTANCE TOWARDS DRAGONS
-CHAIN IF ~InParty("Keldorn") 
-See("Keldorn") 
-Global("KeldornTalkSheena","GLOBAL",0)
-CombatCounter(0)~ THEN BSHEENA SheenaTalkKeldorn1
+CHAIN IF ~Global("KeldornTalkSheena","GLOBAL",0)
+CombatCounter(0)
+InParty("Keldorn")
+!StateCheck("Keldorn",CD_STATE_NOTVALID)
+See("Keldorn")
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkKeldorn1
 @2632  DO ~SetGlobal("KeldornTalkSheena","GLOBAL",1)~ 
 == BKELDOR
 @2633
@@ -1734,10 +1814,13 @@ CombatCounter(0)~ THEN BSHEENA SheenaTalkKeldorn1
 @2640
 EXIT
 
-CHAIN IF ~InParty("Keldorn") 
-See("Keldorn") 
-Global("KeldornTalkSheena","GLOBAL",1)
-CombatCounter(0)~ THEN BSHEENA SheenaTalkKeldorn2
+CHAIN IF ~Global("KeldornTalkSheena","GLOBAL",1)
+CombatCounter(0)
+InParty("Keldorn")
+!StateCheck("Keldorn",CD_STATE_NOTVALID)
+See("Keldorn")
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkKeldorn2
 @2641  DO ~SetGlobal("KeldornTalkSheena","GLOBAL",2)~ 
 == KELDORJ
 @2642
@@ -1763,10 +1846,13 @@ CombatCounter(0)~ THEN BSHEENA SheenaTalkKeldorn2
 @2654
 EXIT
 
-CHAIN IF ~InParty("Keldorn") 
-See("Keldorn") 
-Global("KeldornTalkSheena","GLOBAL",2)
-CombatCounter(0)~ THEN BSHEENA SheenaTalkKeldorn3
+CHAIN IF ~Global("KeldornTalkSheena","GLOBAL",2)
+CombatCounter(0)
+InParty("Keldorn")
+!StateCheck("Keldorn",CD_STATE_NOTVALID)
+See("Keldorn")
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkKeldorn3
 @2655 = @2656  DO ~SetGlobal("KeldornTalkSheena","GLOBAL",3)~ 
 == KELDORJ
 @2657
@@ -1782,11 +1868,13 @@ EXIT
 
 ////////////////////////////////////////////////////////////////////////////////
 //IMOEN
-CHAIN IF ~InParty("Imoen2")
+CHAIN IF ~Global("ImoenTalkSheena","GLOBAL",0)
+CombatCounter(0)
+InParty("Imoen2")
+!StateCheck("Imoen2",CD_STATE_NOTVALID)
 See("Imoen2")
-!StateCheck("Imoen2",STATE_SLEEPING)
-Global("ImoenTalkSheena","GLOBAL",0)
-CombatCounter(0)~ THEN BSHEENA SheenaTalkImoen1
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkImoen1
 @2662   DO ~SetGlobal("ImoenTalkSheena","GLOBAL",1)~ 
 == IMOEN2J
 @2663
@@ -1803,12 +1891,14 @@ CombatCounter(0)~ THEN BSHEENA SheenaTalkImoen1
 EXIT
 
 //Sheena's beauty
-CHAIN IF ~InParty("Imoen2")
-See("Imoen2")
-!StateCheck("Imoen2",STATE_SLEEPING)
-Global("ImoenTalkSheena","GLOBAL",1)
+CHAIN IF ~Global("ImoenTalkSheena","GLOBAL",1)
 Global("SHEENRHD","GLOBAL",0)
-CombatCounter(0)~ THEN BSHEENA SheenaTalkImoen1
+CombatCounter(0)
+InParty("Imoen2")
+!StateCheck("Imoen2",CD_STATE_NOTVALID)
+See("Imoen2")
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkImoen1
 @2669   DO ~SetGlobal("ImoenTalkSheena","GLOBAL",2)~ 
 == IMOEN2J
 @2670 = @2671
@@ -1833,10 +1923,13 @@ CombatCounter(0)~ THEN BSHEENA SheenaTalkImoen1
 EXIT
 
 
-CHAIN IF ~InParty("Nalia") 
-!StateCheck("Nalia",STATE_SLEEPING)  
+CHAIN IF ~Global("SheenaTalkNalia","GLOBAL",3)
 CombatCounter(0)
-Global("SheenaTalkNalia","GLOBAL",3)~ THEN BSHEENA SheenaTalkNalia3
+InParty("Nalia")
+!StateCheck("Nalia",CD_STATE_NOTVALID)
+See("Nalia")
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkNalia3
 @2682  DO ~SetGlobal("SheenaTalkNalia","GLOBAL",4)~ 
 == BNALIA
 @2683 = @2684 
@@ -1860,7 +1953,13 @@ EXIT
 
 ////////////////////////////////////////////////////////////////////////////////
 //EDWIN - 
-CHAIN IF ~Global("EdwinTalkSheena","GLOBAL",1)~ THEN BSHEENA SheenaTalkEdwin2
+CHAIN IF ~Global("EdwinTalkSheena","GLOBAL",1)
+CombatCounter(0)
+InParty("Edwin")
+!StateCheck("Edwin",CD_STATE_NOTVALID)
+See("Edwin")
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkEdwin2
 @2694  DO ~SetGlobal("EdwinTalkSheena","GLOBAL",2) ApplySpellRES("K#POLYS",Myself)~ 
 == BEDWIN
 @2695 
@@ -1869,19 +1968,27 @@ CHAIN IF ~Global("EdwinTalkSheena","GLOBAL",1)~ THEN BSHEENA SheenaTalkEdwin2
 EXIT
 
 APPEND BEDWIN
-IF WEIGHT #-99 ~InParty("K#Sheena") 
+IF WEIGHT #-99 ~Global("EdwinTalkSheena","GLOBAL",0)
+InParty("K#Sheena") 
 See("K#Sheena")
 Global("SheenRHD","GLOBAL",0)
-!StateCheck("K#Sheena",STATE_SLEEPING)  
-Global("EdwinTalkSheena","GLOBAL",0)
-CombatCounter(0)~ THEN BEGIN SheenaTalkEdwin1
+!StateCheck("K#Sheena",CD_STATE_NOTVALID)  
+CombatCounter(0)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BEGIN SheenaTalkEdwin1
 SAY @2697 
 IF ~~ THEN DO ~SetGlobal("EdwinTalkSheena","GLOBAL",1)~ EXTERN BSheena SheenaTalkEdwin2
 END
 END
 
 //second Edwin banter with Sheena
-CHAIN IF ~Global("EdwinTalkSheena","GLOBAL",3)~ THEN BSHEENA SheenaTalkEdwin4
+CHAIN IF ~Global("EdwinTalkSheena","GLOBAL",3)
+CombatCounter(0)
+InParty("Edwin")
+!StateCheck("Edwin",CD_STATE_NOTVALID)
+See("Edwin")
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkEdwin4
 @2698  DO ~SetGlobal("EdwinTalkSheena","GLOBAL",4)~ 
 == BEDWIN
 @2699 
@@ -1898,22 +2005,27 @@ CHAIN IF ~Global("EdwinTalkSheena","GLOBAL",3)~ THEN BSHEENA SheenaTalkEdwin4
 EXIT
 
 APPEND BEDWIN
-IF WEIGHT #-98 ~InParty("K#Sheena") 
+IF WEIGHT #-98 ~Global("EdwinTalkSheena","GLOBAL",2)
+InParty("K#Sheena") 
 See("K#Sheena")
-!StateCheck("K#Sheena",STATE_SLEEPING)  
-Global("EdwinTalkSheena","GLOBAL",2)
-CombatCounter(0)~ THEN BEGIN SheenaTalkEdwin3
+Global("SheenRHD","GLOBAL",0)
+!StateCheck("K#Sheena",CD_STATE_NOTVALID)  
+CombatCounter(0)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BEGIN SheenaTalkEdwin3
 SAY @2705 
 IF ~~ THEN DO ~SetGlobal("EdwinTalkSheena","GLOBAL",3)~ EXTERN BSheena SheenaTalkEdwin4
 END
 END
 ////////////////////////////////////////////////////////////////////////////////
 //DIALOG 1 JAHEIRA - FIRST CONTACT IS COLD BUT SO IS JAHEIRA IN MOST FIRST DIALOGS!
-CHAIN IF ~InParty("Jaheira")
+CHAIN IF ~Global("JahTalkSheena","GLOBAL",0)
+CombatCounter(0)
+InParty("Jaheira")
+!StateCheck("Jaheira",CD_STATE_NOTVALID)
 See("Jaheira")
-!StateCheck("Jaheira",STATE_SLEEPING)
-Global("JahTalkSheena","GLOBAL",0)
-CombatCounter(0)~ THEN BSHEENA JahTalkSheena1
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA JahTalkSheena1
 @2706  DO ~SetGlobal("JahTalkSheena","GLOBAL",1)~ 
 == BJAHEIR
 @2707
@@ -1924,7 +2036,13 @@ CombatCounter(0)~ THEN BSHEENA JahTalkSheena1
 EXIT
 
 //DIALOG 2 APPEARANCES
-CHAIN IF ~Global("JahTalkSheena","GLOBAL",2)~ THEN BSHEENA JahTalkSheena3
+CHAIN IF ~Global("JahTalkSheena","GLOBAL",2)
+CombatCounter(0)
+InParty("Jaheira")
+!StateCheck("Jaheira",CD_STATE_NOTVALID)
+See("Jaheira")
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA JahTalkSheena3
 @2710 DO ~SetGlobal("JahTalkSheena","GLOBAL",3)~ 
 == BJAHEIR
 @2711
@@ -1939,11 +2057,13 @@ CHAIN IF ~Global("JahTalkSheena","GLOBAL",2)~ THEN BSHEENA JahTalkSheena3
 EXIT
 
 APPEND BJAHEIR
-IF ~InParty("K#Sheena") 
+IF ~Global("JahTalkSheena","GLOBAL",1)
+InParty("K#Sheena") 
 See("K#Sheena")
-!StateCheck("K#Sheena",STATE_SLEEPING)
-Global("JahTalkSheena","GLOBAL",1)
-CombatCounter(0)~ THEN BEGIN JahTalkSheena2
+!StateCheck("K#Sheena",CD_STATE_NOTVALID)
+CombatCounter(0)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BEGIN JahTalkSheena2
 SAY @2716 
 IF ~~ THEN DO ~SetGlobal("JahTalkSheena","GLOBAL",2)~ EXTERN BSheena JahTalkSheena3
 END
@@ -1951,12 +2071,13 @@ END
 
 ////////////////////////////////////////////////////////////////////////////////
 //VALYGAR - HATES MAGIC SO THAT COULD BE A START 
-CHAIN IF ~InParty("K#Sheena")
-See("Valygar")
-!StateCheck("Valygar",STATE_SLEEPING)
-Global("ValygarTalkSheena","GLOBAL",0)
+CHAIN IF ~Global("ValygarTalkSheena","GLOBAL",0)
 CombatCounter(0)
-~ THEN BSHEENA ValygarTalkSheena1
+InParty("Valygar")
+!StateCheck("Valygar",CD_STATE_NOTVALID)
+See("Valygar")
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA ValygarTalkSheena1
 @2717  DO ~SetGlobal("ValygarTalkSheena","GLOBAL",1)~ 
 == BVALYGA
 @2718
@@ -1975,12 +2096,13 @@ CombatCounter(0)
 EXIT
 
 
-CHAIN IF ~InParty("K#Sheena")
-See("Valygar")
-!StateCheck("Valygar",STATE_SLEEPING)
-Global("ValygarTalkSheena","GLOBAL",1)
+CHAIN IF ~Global("ValygarTalkSheena","GLOBAL",1)
 CombatCounter(0)
-~ THEN BSHEENA ValygarTalkSheena1
+InParty("Valygar")
+!StateCheck("Valygar",CD_STATE_NOTVALID)
+See("Valygar")
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA ValygarTalkSheena1
 @2727  DO ~SetGlobal("ValygarTalkSheena","GLOBAL",2)~ 
 == BVALYGA
 @2728
@@ -2002,7 +2124,13 @@ EXIT
 
 ////////////////////////////////////////////////////////////////////////////////
 //HAER-DALIS - FIRST DIALOG
-CHAIN IF ~Global("SheenaTalkHaerda","GLOBAL",1)~ THEN BSHEENA SheenaTalkHaerda2
+CHAIN IF ~Global("SheenaTalkHaerda","GLOBAL",1)
+CombatCounter(0)
+InParty("Haerdalis")
+!StateCheck("Haerdalis",CD_STATE_NOTVALID)
+See("Haerdalis")
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkHaerda2
 @2736  DO ~SetGlobal("SheenaTalkHaerda","GLOBAL",2)~ 
 == BHAERDA
 @2737
@@ -2015,22 +2143,26 @@ CHAIN IF ~Global("SheenaTalkHaerda","GLOBAL",1)~ THEN BSHEENA SheenaTalkHaerda2
 EXIT
 
 APPEND BHAERDA
-IF WEIGHT #-42 ~InParty("K#Sheena") 
+IF WEIGHT #-42 ~Global("SheenaTalkHaerda","GLOBAL",0)
+InParty("K#Sheena") 
 See("K#Sheena")
 InParty(Myself)
-!StateCheck("K#Sheena",STATE_SLEEPING)  
-Global("SheenaTalkHaerda","GLOBAL",0)
-CombatCounter(0)~ THEN BEGIN SheenaTalkHaerda1
+!StateCheck("K#Sheena",CD_STATE_NOTVALID) 
+CombatCounter(0)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BEGIN SheenaTalkHaerda1
 SAY @2745 
 IF ~~ THEN DO ~SetGlobal("SheenaTalkHaerda","GLOBAL",1)~ EXTERN BSheena SheenaTalkHaerda2
 END
 END
 
-CHAIN IF ~InParty("HAERDALIS") 
-See("HAERDALIS")
+CHAIN IF ~Global("SheenaTalkHaerda","GLOBAL",2)
+CombatCounter(0)
+InParty("Haerdalis")
+!StateCheck("Haerdalis",CD_STATE_NOTVALID)
+See("Haerdalis")
 InParty(Myself)
-!StateCheck("HAERDALIS",STATE_SLEEPING)  
-Global("SheenaTalkHaerda","GLOBAL",2)~ THEN BSHEENA SheenaTalkHaerda3
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA SheenaTalkHaerda3
 @2746  DO ~SetGlobal("SheenaTalkHaerda","GLOBAL",3)~ 
 == BHAERDA
 @2747
@@ -2053,11 +2185,13 @@ EXIT
 
 ////////////////////////////////////////////////////////////////////////////////
 //YOSHIMO - SHEENA MASTER OF DISGUISE
-CHAIN IF ~InParty("K#Sheena")
+CHAIN IF ~Global("YoshTalkSheena","GLOBAL",0)
+InParty("K#Sheena")
 See("K#Sheena")
-!StateCheck("K#Sheena",STATE_SLEEPING)
-Global("YoshTalkSheena","GLOBAL",0)
-CombatCounter(0)~ THEN BYOSHIM YoshTalkSheena1
+!StateCheck("K#Sheena",CD_STATE_NOTVALID)
+CombatCounter(0)
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BYOSHIM YoshTalkSheena1
 @2758  DO ~SetGlobal("YoshTalkSheena","GLOBAL",1)~ 
 == BSHEENA
 @2759
@@ -2071,11 +2205,13 @@ CombatCounter(0)~ THEN BYOSHIM YoshTalkSheena1
 @2763
 EXIT
 
-CHAIN IF ~InParty("Yoshimo")
+CHAIN IF ~Global("YoshTalkSheena1","GLOBAL",0)
+CombatCounter(0)
+InParty("Yoshimo")
+!StateCheck("Yoshimo",CD_STATE_NOTVALID)
 See("Yoshimo")
-!StateCheck("Yoshimo",STATE_SLEEPING)
-Global("YoshTalkSheena1","GLOBAL",0)
-CombatCounter(0)~ THEN BSHEENA YoshTalkSheena2
+InParty(Myself)
+!StateCheck(Myself,CD_STATE_NOTVALID)~ THEN BSHEENA YoshTalkSheena2
 @2764  DO ~SetGlobal("YoshTalkSheena1","GLOBAL",1)~ 
 == BYOSHIM
 @2765
