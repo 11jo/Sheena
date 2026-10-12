@@ -1270,7 +1270,7 @@ GlobalLT("CHAPTER","GLOBAL",%bg2_chapter_4%)
 !StateCheck("K#Sheena",STATE_SLEEPING)
 Global("Sheenacorneil1","LOCALS",0)
 Global("SheenRHD","GLOBAL",1)~ THEN CORNEIL sheenacorneil
-@8349 DO ~SetGlobal("SheenaCorne1l1","LOCALS",1) Enemy() Shout(99)~
+@8349 DO ~SetGlobal("Sheenacorneil1","LOCALS",1) Enemy() Shout(99)~
 EXIT
 /////////////////////////////////////////////////////////////////////////////
 //LOST CHILD IN THE DOCKS WHO DOES NOT STOP CRYING

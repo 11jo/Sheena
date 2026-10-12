@@ -113,7 +113,7 @@ v.1.7 Supported release (14 June 2009)
 - Updated to WeiDU 
 
 v.2.5
-- EE update by 
+- EE update by Edvin
 
 v.2.6
 - Simplified Chinese by MephistoSatanDevil
@@ -123,3 +123,4 @@ v.2.6
 - Handle Audio / Handle Charset / Autotra / IconV
 - WeiduModPackager
 - gw_dlg_functions for fate spirit
+- IDS misindexed

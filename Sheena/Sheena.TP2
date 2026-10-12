@@ -1,4 +1,4 @@
-BACKUP ~Sheena/backup~
+BACKUP ~weidu_external/Sheena/backup~
 AUTHOR ~j_f_kalban@caramail.com~ // EE first update edvin@seznam.cz
 
 VERSION ~v2.6~
@@ -104,10 +104,10 @@ ACTION_IF (GAME_IS ~SoA~) BEGIN
 	END
 END
 
-APPEND ~ACTION.IDS~ ~147 RemoveSpellRES(S:RES*)~
-	UNLESS ~147 RemoveSpellRES(S:RES/*)~
-APPEND ~TRIGGER.IDS~ ~0x4031 HaveSpellRES(S:Spell*)~
-	UNLESS ~0x4031 HaveSpellRES(S:Spell/*)~
+ACTION_IF (NOT GAME_IS ~bg2ee eet~) BEGIN
+	APPEND ~ACTION.IDS~ ~147 RemoveSpellRES(S:Spell*)~	UNLESS ~147 RemoveSpellRES(S:Spell\*)~
+	APPEND ~TRIGGER.IDS~ ~0x4031 HaveSpellRES(S:Spell*)~	UNLESS ~0x4031 HaveSpellRES(S:Spell\*)~
+END
 
 
 //Portraits
@@ -261,11 +261,11 @@ APPEND ~pdialog.2da~ ~K#SHEENA        SHEENAP           SHEENAJ          SHEENAD
 	UNLESS ~K#Sheena~
 		UNLESS ~25POST~
 
-APPEND ~pdialog.2da~ ~K#SHEENA        SHEENAP           SHEENAJ          SHEENAD         SHEENA25P               SHEENA25J                SHEENA25D                   SHEENA25~
+APPEND ~pdialog.2da~ ~K#SHEENA        SHEENAP           SHEENAJ          SHEENAD         SHEEN25P               SHEEN25J                SHEEN25D                   SHEENA25~
 	UNLESS ~K#Sheena~
 		IF ~25POST~
 
-APPEND ~interdia.2da~ ~K#Sheena      BSHEENA       BSHEENA25~
+APPEND ~interdia.2da~ ~K#Sheena      BSHEENA       BSHEEN25~
 	UNLESS ~K#Sheena~
 
 	// Variable used by FUNCTION GW_FIND_DLG_RESPONSE_STRING to find after which transition NPC will be recalled by Fate Spirit.

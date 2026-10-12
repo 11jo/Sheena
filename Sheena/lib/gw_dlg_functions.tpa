@@ -65,7 +65,7 @@ COPY_EXISTING - ~fatesp.dlg~ ~override~
 	PATCH_IF (SOURCE_SIZE > 0x2f) THEN BEGIN	// protects against invalid files
 		LPF ~GW_FIND_DLG_RESPONSE_STRING~ INT_VAR GW_string_dlg = EVAL "%fatesp_string%" RET GW_transition_found GW_state_number GW_transition_number END
 		PATCH_IF ("%GW_transition_found%" STRING_EQUAL "Y") AND (GW_transition_number != "-99") BEGIN
-			SET fatesp_transition = GW_transition_number - 1
+			SET fatesp_transition = GW_transition_number
 			SET fatesp_state = GW_state_number
 			PATCH_PRINT "CONTROL %SOURCE_RES%.dlg	-	Transition found = %GW_transition_found%	-	state = #%fatesp_state%	-	transition = #%fatesp_transition%."
 		END
